@@ -108,7 +108,7 @@
 
   <nav class="flex flex-col space-y-5 text-lg font-medium">
     <a href="/" class="nav-item">Home</a>
-    <a href="/about/" class="nav-item text-cyan-600 font-semibold">About</a>
+    <a href="/about/" class="nav-item ">About</a>
     <a href="/services/" class="nav-item">Services</a>
     <a href="/career/" class="nav-item">Careers</a>
     <a href="/contact/" class="nav-item">Contact</a>
@@ -272,20 +272,27 @@
     overlay.addEventListener("click", closeMenu);
   });
 </script>
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const current = window.location.pathname;
   document.querySelectorAll('.nav-item').forEach(link => {
     const href = link.getAttribute('href');
-    // Match exact path OR subfolder (e.g., /services/ and /services/apply/)
-    if (current === href || current.startsWith(href)) {
+
+    // For Home: highlight only if you're on root "/"
+    if (href === "/" && (current === "/" || current === "/index.html")) {
       link.classList.add('text-cyan-600', 'font-semibold');
-    } else {
+    }
+    // For other pages: highlight if path starts with that href
+    else if (href !== "/" && current.startsWith(href)) {
+      link.classList.add('text-cyan-600', 'font-semibold');
+    } 
+    else {
       link.classList.remove('text-cyan-600', 'font-semibold');
     }
   });
 });
 </script>
+
 
 </body>
 </html>
