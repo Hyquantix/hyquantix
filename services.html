@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services | Hyquantix Technologies Pvt. Ltd.</title>
+  <link rel="icon" type="image/png"  href="logo2.png" />
+
+  <!-- Tailwind & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    .nav-item { color: #374151; font-weight: 500; transition: all 0.3s ease; }
+    .nav-item:hover { color: #0ea5e9; }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #06b6d4, #6366f1);
+      color: white; font-weight: 600;
+      padding: 0.6rem 1.5rem; border-radius: 9999px;
+      box-shadow: 0 6px 15px rgba(14,165,233,0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(14,165,233,0.4);
+    }
+
+    .page-header {
+      background: linear-gradient(to right, #06b6d4, #6366f1);
+      color: white;
+      padding: 8rem 1rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: white;
+      border-radius: 50% 50% 0 0;
+    }
+
+    .service-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      border-color: #06b6d4;
+      box-shadow: 0 10px 25px rgba(14,165,233,0.15);
+      transform: translateY(-5px);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      color: #06b6d4;
+      margin-bottom: 1rem;
+    }
+
+    /* Chatbot (same as index for consistency) */
+    .chatbot-container {
+      position: fixed; bottom: 90px; right: 30px;
+      width: 320px; height: 420px; background: #fff;
+      border: 1px solid #e5e7eb; border-radius: 1rem;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+      display: none; flex-direction: column; overflow: hidden; z-index: 9999;
+    }
+    .chatbot-header { background: linear-gradient(90deg, #06b6d4, #6366f1); color: #fff; padding: 10px 15px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+    .chatbot-messages { flex: 1; padding: 10px; overflow-y: auto; color: #111827; }
+    .user-msg, .bot-msg { margin: 8px 0; padding: 8px 12px; border-radius: 10px; max-width: 80%; }
+    .user-msg { background: #06b6d4; color: white; margin-left: auto; }
+    .bot-msg { background: #f3f4f6; color: #111827; }
+    .chatbot-input { display: flex; border-top: 1px solid #e5e7eb; }
+    .chatbot-input input { flex: 1; border: none; padding: 10px; outline: none; }
+    .chatbot-input button { background: #06b6d4; border: none; padding: 10px 15px; color: white; cursor: pointer; }
+    .chatbot-toggle { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #06b6d4, #6366f1); color: white; font-size: 26px; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 15px rgba(14,165,233,0.4); z-index: 9999; }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/90 border-b border-gray-200 shadow-sm">
+    <div class="container mx-auto flex items-center justify-between px-8 py-4">
+      <div class="flex items-center space-x-3">
+        <a href="index.html">
+        <img src="logo.png" alt="Hyquantix Logo" class="w-50 h-10 object-contain">
+        
+        </a>
+        <p class="text-sm text-gray-500">Intelligent · Reliable · Secure</p>
+      </div>
+      <nav class="hidden md:flex space-x-8 font-medium">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="services.html" class="nav-item text-cyan-600 font-semibold">Services</a>
+        <a href="career.html" class="nav-item">Careers</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+      <a href="impact.html" class="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-md hover:shadow-lg transition">
+        Our Impact
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header mt-16">
+    <h1 class="text-5xl font-extrabold mb-4">Our Services</h1>
+    <p class="text-lg opacity-90">Empowering businesses with intelligent and secure digital solutions</p>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-20 container mx-auto px-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <div data-lucide="globe" class="service-icon"></div>
+        <h3 class="text-xl font-semibold mb-2">Web Development</h3>
+        <p class="text-gray-600 mb-4">Custom websites, portals, and scalable applications built with modern frameworks like React, Next.js, and Node.js.</p>
+        <a href="contact.html" class="text-cyan-600 font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card">
+        <div data-lucide="cpu" class="service-icon"></div>
+        <h3 class="text-xl font-semibold mb-2">Automation & AI</h3>
+        <p class="text-gray-600 mb-4">Leverage AI and process automation to streamline workflows, improve accuracy, and save time.</p>
+        <a href="contact.html" class="text-cyan-600 font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card">
+        <div data-lucide="cloud" class="service-icon"></div>
+        <h3 class="text-xl font-semibold mb-2">Cloud & DevOps</h3>
+        <p class="text-gray-600 mb-4">Cloud migration, infrastructure management, and CI/CD pipelines for scalability and reliability.</p>
+        <a href="contact.html" class="text-cyan-600 font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card">
+        <div data-lucide="lock" class="service-icon"></div>
+        <h3 class="text-xl font-semibold mb-2">Cybersecurity</h3>
+        <p class="text-gray-600 mb-4">Protect your digital assets with risk assessment, threat detection, and data protection strategies.</p>
+        <a href="contact.html" class="text-cyan-600 font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="service-card">
+        <div data-lucide="bar-chart-3" class="service-icon"></div>
+        <h3 class="text-xl font-semibold mb-2">Data Analytics</h3>
+        <p class="text-gray-600 mb-4">Transform your raw data into actionable insights to guide decision-making and business growth.</p>
+        <a href="contact.html" class="text-cyan-600 font-semibold hover:underline">Learn More →</a>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="service-card">
+        <div data-lucide="users" class="service-icon"></div>
+        <h3 class="text-xl font-semibold mb-2">IT Consulting</h3>
+        <p class="text-gray-600 mb-4">Strategic technology advisory to align IT initiatives with your business goals.</p>
+        <a href="contact.html" class="text-cyan-600 font-semibold hover:underline">Learn More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-gradient-to-r from-cyan-50 to-blue-50 text-center">
+    <h2 class="text-4xl font-bold mb-4 text-gray-900">Ready to Transform Your Business?</h2>
+    <p class="text-gray-600 mb-8">Let’s create intelligent, secure, and scalable digital solutions together.</p>
+    <a href="contact.html" class="btn-primary">Get in Touch</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-50 border-t border-gray-200 py-10 text-center text-sm text-gray-500">
+    © 2025 Hyquantix Technologies Pvt. Ltd. · All Rights Reserved.
+  </footer>
+
+  <!-- Chatbot -->
+  <div class="chatbot-container" id="chatbot">
+    <div class="chatbot-header">
+      <h4>Hyquantix AI Assistant</h4>
+      <button onclick="toggleChat()">×</button>
+    </div>
+    <div class="chatbot-messages" id="chat-messages">
+      <div class="bot-msg">👋 Hi! Ask me about our services.</div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+  <div class="chatbot-toggle" onclick="toggleChat()">🤖</div>
+
+  <script>
+    function toggleChat() {
+      const chat = document.getElementById("chatbot");
+      chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("user-input");
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const messages = document.getElementById("chat-messages");
+      const userMsg = document.createElement("div");
+      userMsg.classList.add("user-msg");
+      userMsg.textContent = msg;
+      messages.appendChild(userMsg);
+
+      const botMsg = document.createElement("div");
+      botMsg.classList.add("bot-msg");
+
+      if (msg.toLowerCase().includes("web")) {
+        botMsg.textContent = "We build dynamic, responsive websites using React, Next.js, and more.";
+      } else if (msg.toLowerCase().includes("cloud")) {
+        botMsg.textContent = "Our Cloud & DevOps experts specialize in AWS, GCP, and Azure solutions.";
+      } else if (msg.toLowerCase().includes("ai")) {
+        botMsg.textContent = "Hyquantix provides custom AI and automation solutions to streamline operations.";
+      } else {
+        botMsg.textContent = "I’ll forward your query to our team. Someone will get back soon!";
+      }
+
+      messages.appendChild(botMsg);
+      messages.scrollTop = messages.scrollHeight;
+      input.value = "";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => lucide.createIcons());
+  </script>
+</body>
+</html>

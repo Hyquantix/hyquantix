@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyquantix Technologies Pvt. Ltd.</title>
+  <link rel="icon" type="image/png"  href="logo2.png" />
+
+
+
+
+  <!-- Tailwind & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://kit.fontawesome.com/a2e0e6b6b4.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    /* Navbar */
+    .nav-item {
+      color: #374151;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .nav-item:hover { color: #0ea5e9; }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #06b6d4, #6366f1);
+      color: rgb(236, 226, 226);
+      font-weight: 600;
+      padding: 0.6rem 1.5rem;
+      border-radius: 9999px;
+      box-shadow: 0 6px 15px rgba(14,165,233,0.3);
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(14,165,233,0.4);
+    }
+
+    /* Gradient headline */
+    .animated-gradient-text {
+      background: linear-gradient(90deg, #0ea5e9, #6366f1, #06b6d4);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: flowGradient 6s ease-in-out infinite;
+      font-weight: 800;
+    }
+    @keyframes flowGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Chatbot */
+    .chatbot-container {
+      position: fixed;
+      bottom: 90px;
+      right: 30px;
+      width: 320px;
+      height: 420px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9999;
+    }
+    .chatbot-header {
+      background: linear-gradient(90deg, #06b6d4, #6366f1);
+      color: white;
+      padding: 10px 15px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chatbot-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      color: #111827;
+    }
+    .user-msg, .bot-msg {
+      margin: 8px 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+    .user-msg { background: #06b6d4; color: white; margin-left: auto; }
+    .bot-msg { background: #f3f4f6; color: #111827; }
+    .chatbot-input { display: flex; border-top: 1px solid #e5e7eb; }
+    .chatbot-input input {
+      flex: 1; background: transparent; border: none;
+      padding: 10px; color: #111827; outline: none;
+    }
+    .chatbot-input button {
+      background: #06b6d4; border: none; padding: 10px 15px;
+      cursor: pointer; border-radius: 0 0.5rem 0.5rem 0; color: white;
+    }
+
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 30px; right: 30px;
+      background: linear-gradient(135deg, #06b6d4, #6366f1);
+      color: white; font-size: 26px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      cursor: pointer; box-shadow: 0 4px 15px rgba(14,165,233,0.4);
+      transition: transform 0.3s ease;
+      z-index: 9999;
+    }
+    .chatbot-toggle:hover { transform: scale(1.1); }
+
+    .group:hover .icon svg {
+      stroke: #3b82f6;
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 6px rgba(59,130,246,0.5));
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/90 border-b border-gray-200 shadow-sm">
+    <div class="container mx-auto flex items-center justify-between px-8 py-4">
+      <div class="flex items-center space-x-3">
+        <a href="index.html">
+        <img src="logo.png" alt="Hyquantix Logo" class="w-32 md:w-40 h-auto object-contain">
+
+        
+        </a>
+        <p class="text-sm text-gray-500">Intelligent · Reliable · Secure</p>
+      </div>
+      <nav class="hidden md:flex space-x-8 font-medium">
+        <a href="index.html" class="nav-item text-cyan-600 font-semibold">Home</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="services.html" class="nav-item">Services</a>
+        <a href="career.html" class="nav-item">Careers</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
+      <a href="impact.html" class="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-md hover:shadow-lg transition">
+        Our Impact
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" 
+  class="relative text-gray-900 overflow-hidden bg-cover bg-center bg-no-repeat" 
+  style="background-image: url('img1.jpg');">
+  
+  <!-- Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white/90 via-gray-50/80 to-gray-100/70"></div>
+
+  <div class="relative container mx-auto px-6 py-40 flex flex-col md:flex-row items-center justify-between gap-16">
+    <div class="max-w-xl z-10">
+      <p class="uppercase tracking-widest text-sm text-gray-600 mb-3">Digital Innovation Partner</p>
+      <h1 class="text-6xl font-extrabold leading-tight mb-6">
+        <span class="animated-gradient-text">Empowering Your Digital Transformation</span>
+      </h1>
+      <p class="text-gray-700 text-lg leading-relaxed mb-8">
+        <strong>Hyquantix</strong> unlocks your business’s full potential with innovative IT solutions. 
+        We streamline processes, automate tasks, and provide expert support — empowering you to achieve unprecedented growth.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#expertise" class="btn-primary">Explore Services</a>
+        <a href="about.html" class="px-6 py-3 border border-gray-300 font-semibold rounded-full hover:bg-gray-100 hover:text-gray-900 transition">Learn More</a>
+      </div>
+    </div>
+
+    <div class="relative flex justify-center items-center z-10">
+      <div class="relative w-[420px] h-[420px]">
+        <lottie-player 
+          src="https://assets9.lottiefiles.com/packages/lf20_pprxh53t.json" 
+          background="transparent" speed="1" loop autoplay>
+        </lottie-player>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- OUR CORE EXPERTISE -->
+  <!-- Expertise section -->
+<section id="expertise" class="relative overflow-hidden py-24 bg-white text-gray-700"
+         style="background-image: url('grid.svg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+         <div class="absolute inset-0 bg-white/80"></div>
+
+    <div class="container mx-auto px-6 text-center">
+      <div class="relative inline-block mb-16">
+  <h3 class="text-4xl md:text-4xl font-extrabold mb-4 text-gray-900">
+    Empowering the Future with <span class="text-cyan-600">AI Innovation</span>
+  </h3>
+  <p class="text-gray-700 text-lg">
+    From intelligent automation to advanced analytics, our AI-powered expertise helps businesses evolve, adapt, and lead in the digital era.
+  </p>
+</div>
+
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Card -->
+        <div class="group bg-gray-50 p-10 rounded-2xl border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg transform transition-all duration-300 hover:scale-105">
+          <div class="flex justify-center mb-4"><div data-lucide="cloud-upload" class="w-8 h-8 text-cyan-600"></div></div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Web Development</h4>
+          <p class="text-gray-600 text-sm">Automate invoice workflows, reduce errors, and save time.</p>
+        </div>
+
+        <div class="group bg-gray-50 p-10 rounded-2xl border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg transform transition-all duration-300 hover:scale-105">
+          <div class="flex justify-center mb-4"><div data-lucide="mouse-pointer-click" class="w-8 h-8 text-cyan-600"></div></div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Web Scraping</h4>
+          <p class="text-gray-600 text-sm">Extract data, gain insights, and stay competitive.</p>
+        </div>
+
+        <div class="group bg-gray-50 p-10 rounded-2xl border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg transform transition-all duration-300 hover:scale-105">
+          <div class="flex justify-center mb-4"><div data-lucide="monitor-smartphone" class="w-8 h-8 text-cyan-600"></div></div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Automation Process</h4>
+          <p class="text-gray-600 text-sm">Streamline tasks, boost efficiency, and reduce manual work.</p>
+        </div>
+
+        <div class="group bg-gray-50 p-10 rounded-2xl border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg transform transition-all duration-300 hover:scale-105">
+          <div class="flex justify-center mb-4"><div data-lucide="users" class="w-8 h-8 text-cyan-600"></div></div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">HR Solutions</h4>
+          <p class="text-gray-600 text-sm">HR automation boosts efficiency and empowers growth.</p>
+        </div>
+
+        <div class="group bg-gray-50 p-10 rounded-2xl border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg transform transition-all duration-300 hover:scale-105">
+          <div class="flex justify-center mb-4"><div data-lucide="radar" class="w-8 h-8 text-cyan-600"></div></div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Data Analytics</h4>
+          <p class="text-gray-600 text-sm">Transform data, discover trends, and make informed decisions.</p>
+        </div>
+
+        <div class="group bg-gray-50 p-10 rounded-2xl border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg transform transition-all duration-300 hover:scale-105">
+          <div class="flex justify-center mb-4"><div data-lucide="smartphone" class="w-8 h-8 text-cyan-600"></div></div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">IT Consulting</h4>
+          <p class="text-gray-600 text-sm">Expert advice, strategic planning, and technology roadmaps.</p>
+        </div>
+
+        <div class="group bg-gray-50 p-10 rounded-2xl border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg transform transition-all duration-300 hover:scale-105">
+          <div class="flex justify-center mb-4"><div data-lucide="shield" class="w-8 h-8 text-cyan-600"></div></div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Cybersecurity</h4>
+          <p class="text-gray-600 text-sm">Protect data, prevent threats, and ensure business continuity.</p>
+        </div>
+
+        <div class="group bg-gray-50 p-10 rounded-2xl border border-gray-200 hover:border-cyan-400 shadow-sm hover:shadow-lg transform transition-all duration-300 hover:scale-105">
+          <div class="flex justify-center mb-4"><div data-lucide="cloud" class="w-8 h-8 text-cyan-600"></div></div>
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Cloud Solutions</h4>
+          <p class="text-gray-600 text-sm">Scalable, secure, and cost-effective cloud infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPREHENSIVE IT SOLUTIONS -->
+ <section 
+  class="relative py-24 bg-gradient-to-b from-gray-50 via-white to-gray-100 text-center overflow-hidden"
+  style="background-image: url('radarr-bg.svg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+  
+  <div class="absolute inset-0 bg-white/60"></div> <!-- light overlay for readability -->
+
+  <div class="relative container mx-auto px-6">
+    <div class="inline-block mb-6 px-5 py-1 rounded-full bg-cyan-50 text-sm text-cyan-600 border border-cyan-200">
+      Your IT Partner
+    </div>
+
+    <h2 class="text-4xl font-bold mb-6 text-gray-900">
+      Comprehensive IT Solutions
+    </h2>
+
+    <p class="text-gray-600 text-lg mb-16 max-w-3xl mx-auto">
+      Hyquantix delivers comprehensive IT solutions tailored to your unique needs. From automation to cybersecurity, we empower businesses to thrive in the digital age with innovative and reliable services.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+      <div class="flex flex-col items-center text-center bg-white p-8 rounded-2xl border border-gray-200 hover:border-cyan-400 transition shadow-sm hover:shadow-lg">
+        <div class="mb-5" data-lucide="cpu" style="width:50px;height:50px;color:#06b6d4;"></div>
+        <h4 class="text-xl font-semibold mb-2 text-gray-900">Improved Efficiency</h4>
+        <p class="text-gray-600">
+          Automate repetitive tasks, reduce manual effort, and free up valuable time for innovation.
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center text-center bg-white p-8 rounded-2xl border border-gray-200 hover:border-cyan-400 transition shadow-sm hover:shadow-lg">
+        <div class="mb-5" data-lucide="shield-check" style="width:50px;height:50px;color:#06b6d4;"></div>
+        <h4 class="text-xl font-semibold mb-2 text-gray-900">Data Security</h4>
+        <p class="text-gray-600">
+          Protect sensitive information with encryption, access control, and compliance-driven measures.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-white via-gray-50 to-gray-100 text-center">
+    <h2 class="text-4xl font-bold mb-4 text-gray-900">Let's Build the Future Together</h2>
+    <p class="text-gray-600 mb-8">Partner with Hyquantix Technologies to accelerate your digital transformation journey.</p>
+    <a href="contact.html" class="inline-block px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-semibold rounded-full shadow-md transition">Contact Us</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-50 border-t border-gray-200 py-12 text-gray-500 text-sm">
+    <div class="container mx-auto px-6 grid sm:grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
+      <div>
+        <h4 class="text-base font-semibold text-gray-900 mb-3">Hyquantix Technologies</h4>
+        <p class="text-gray-600 leading-relaxed mb-3">
+          Intelligent, reliable, and secure digital solutions built for scalable growth.
+        </p>
+        <p class="text-gray-400 text-xs">GautamBudh Nagar, India</p>
+      </div>
+      <div>
+        <h5 class="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">Company</h5>
+        <ul class="space-y-1">
+          <li><a href="about.html" class="hover:text-cyan-600 transition">About</a></li>
+          <li><a href="career.html" class="hover:text-cyan-600 transition">Careers</a></li>
+          <li><a href="services.html" class="hover:text-cyan-600 transition">Services</a></li>
+          <li><a href="contact.html" class="hover:text-cyan-600 transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">Resources</h5>
+        <ul class="space-y-1">
+          <li><a href="privacy.html" class="hover:text-cyan-600 transition">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-cyan-600 transition">Terms</a></li>
+          <li><a href="#" class="hover:text-cyan-600 transition">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">Contact</h5>
+        <p class="text-gray-600 mb-1">📧 support@hyquantix.com</p>
+        <p class="text-gray-600 mb-3">📞 +91-8700790835</p>
+        <div class="flex justify-center md:justify-start space-x-4 text-lg">
+          <a href="#" class="hover:text-cyan-600 transition"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="hover:text-cyan-600 transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-cyan-600 transition"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 mt-10 pt-4 text-center text-xs text-gray-400">
+      © 2025 Hyquantix Technologies Pvt. Ltd. · All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Chatbot -->
+  <!-- Chatbot UI -->
+<div class="chatbot-container" id="chatbot" style="display:none;">
+  <div class="chatbot-header flex justify-between items-center p-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+    <h4 class="font-semibold">Hyquantix AI Assistant</h4>
+    <button onclick="closeChat()" class="text-xl font-bold">×</button>
+  </div>
+  <div class="chatbot-messages flex-1 p-3 overflow-y-auto text-gray-800 bg-white" id="chat-messages"></div>
+  <div class="chatbot-input flex border-t border-gray-200">
+    <input type="text" id="user-input" class="flex-1 p-3 outline-none" placeholder="Type your message..." />
+    <button onclick="sendMessage()" class="bg-cyan-500 text-white px-4 text-lg font-bold">➤</button>
+  </div>
+</div>
+
+<!-- Toggle Button -->
+<div class="chatbot-toggle" onclick="openChat()">🤖</div>
+
+<script>
+  let chatStep = 0;
+  let userProfile = { name: "", phone: "" };
+  let typingTimer;
+
+  function openChat() {
+    const chat = document.getElementById("chatbot");
+    chat.style.display = "flex";
+
+    const messages = document.getElementById("chat-messages");
+    messages.innerHTML = "";
+
+    const greet = document.createElement("div");
+    greet.classList.add("bot-msg");
+    greet.textContent = "👋 Hi! I’m your Hyquantix Assistant. What’s your name?";
+    messages.appendChild(greet);
+    chatStep = 1;
+  }
+
+  function closeChat() {
+    document.getElementById("chatbot").style.display = "none";
+  }
+
+  function showTypingIndicator() {
+    const typingIndicator = document.createElement("div");
+    typingIndicator.id = "typing-indicator";
+    typingIndicator.style.cssText = `
+      position: absolute;
+      bottom: 62px;
+      left: 20px;
+      font-size: 13px;
+      color: #0ea5e9;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      animation: fadeIn 0.3s ease-in-out;
+    `;
+    typingIndicator.innerHTML = `💬 <span>Hyquantix Assistant is typing<span id="dots">.</span></span>`;
+    document.getElementById("chatbot").appendChild(typingIndicator);
+
+    let dotCount = 1;
+    typingTimer = setInterval(() => {
+      const dots = document.getElementById("dots");
+      if (dots) {
+        dotCount = (dotCount % 3) + 1;
+        dots.textContent = ".".repeat(dotCount);
+      }
+    }, 400);
+  }
+
+  function hideTypingIndicator() {
+    clearInterval(typingTimer);
+    const indicator = document.getElementById("typing-indicator");
+    if (indicator) indicator.remove();
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("user-input");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    const messages = document.getElementById("chat-messages");
+    const userMsg = document.createElement("div");
+    userMsg.classList.add("user-msg");
+    userMsg.style.cssText =
+      "background:#06b6d4;color:#fff;padding:8px 12px;border-radius:10px;margin:8px 0 8px auto;max-width:80%;";
+    userMsg.textContent = msg;
+    messages.appendChild(userMsg);
+
+    showTypingIndicator();
+
+    setTimeout(() => {
+      hideTypingIndicator();
+
+      const botMsg = document.createElement("div");
+      botMsg.classList.add("bot-msg");
+      botMsg.style.cssText =
+        "background:#f3f4f6;color:#111827;padding:8px 12px;border-radius:10px;margin:8px auto 8px 0;max-width:80%;";
+
+      const lowerMsg = msg.toLowerCase();
+
+      // === Step 1: Ask for name ===
+      if (chatStep === 1) {
+        const greetings = ["hi", "hello", "hey", "yo", "hola", "namaste"];
+        if (greetings.includes(lowerMsg)) {
+          botMsg.textContent = "😊 Hi there! Could you please tell me your name?";
+        } else {
+          userProfile.name = msg;
+          botMsg.textContent = `Nice to meet you, ${userProfile.name}! 😊 Could you please share your mobile number?`;
+          chatStep = 2;
+        }
+      }
+
+      // === Step 2: Ask for phone ===
+      else if (chatStep === 2) {
+        const phoneRegex = /^\+?[0-9\s\-()]{7,20}$/;
+        if (!phoneRegex.test(msg)) {
+          botMsg.textContent =
+            "⚠️ That doesn’t look like a valid mobile number. Please enter again (e.g., +91 98765 43210).";
+        } else {
+          userProfile.phone = msg;
+          botMsg.textContent = `Thanks, ${userProfile.name}! 📱 Your number ${userProfile.phone} is saved. How can I help you today?`;
+          chatStep = 3;
+
+          // ✅ Send user data to Google Sheet
+          const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw82we16JtNvPg1maBqLl6rBNRtgRUfhCYB_PqieGmd4dJ_4kLPPIB3jusgdG84orty/exec";
+
+          fetch(WEB_APP_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              secret: "hyq_chat_7w8K",
+              name: userProfile.name,
+              phone: userProfile.phone,
+              email: userProfile.email || "",
+              source: "chatbot",
+              notes: "from Hyquantix AI Assistant"
+            }),
+          });
+
+          // ✅ Show confirmation
+          setTimeout(() => {
+            const confirmMsg = document.createElement("div");
+            confirmMsg.classList.add("bot-msg");
+            confirmMsg.style.cssText =
+              "background:#e0f7f9;color:#0284c7;padding:8px 12px;border-radius:10px;margin:8px auto 8px 0;max-width:80%;";
+            confirmMsg.textContent = "✅ Your contact info has been saved securely. Our team will reach out soon!";
+            messages.appendChild(confirmMsg);
+          }, 1500);
+        }
+      }
+
+      // === Step 3: Normal conversation ===
+      else {
+            if (["how are you", "how r u", "what’s up", "hows it going"].some(q => lowerMsg.includes(q))) {
+              botMsg.textContent = "😊 I’m doing great — energized and ready to help you! How about you?";
+            }else if (lowerMsg.includes("leadership") || lowerMsg.includes("founder") || lowerMsg.includes("ceo")) {
+              botMsg.textContent =
+                "👨‍💼 Hyquantix Technologies was founded by Gaurav Singh — leading a team passionate about AI, automation, and innovation.";
+            }else if (lowerMsg.includes("approach") || lowerMsg.includes("culture") || lowerMsg.includes("work style")) {
+              botMsg.textContent =
+                "🤝 Our approach is Intelligent · Reliable · Secure — blending technical depth with business impact.";
+            }else if (lowerMsg.includes("where") || lowerMsg.includes("location") || lowerMsg.includes("based")) {
+              botMsg.textContent = "📍 We’re headquartered in **Bangalore, India**, and collaborate with clients worldwide.";
+            }else if (lowerMsg.includes("technology") || lowerMsg.includes("stack") || lowerMsg.includes("tools")) {
+              botMsg.textContent =
+                "🧠 Our core tech stack includes Python, React, Node.js, Firebase, AWS, Azure, and advanced AI/ML frameworks.";
+            }else if (lowerMsg.includes("value") || lowerMsg.includes("mission") || lowerMsg.includes("goal")) {
+              botMsg.textContent =
+                "💡 Our mission is to design intelligent, ethical, and scalable digital systems that truly empower businesses.";
+            }else if (lowerMsg.includes("industry") || lowerMsg.includes("domain") || lowerMsg.includes("sector")) {
+              botMsg.textContent =
+                "🏢 We’ve delivered solutions across automation, energy, education, fintech, and technology sectors.";
+            }else if (lowerMsg.includes("automation") || lowerMsg.includes("automate")) {
+              botMsg.textContent =
+                "⚙️ Great question! Automation can optimize your workflows, reduce manual errors, and boost productivity. "
+                + "Hyquantix can help design RPA bots or AI-driven systems tailored to your business process.";
+            }else if (lowerMsg.includes("why choose") || lowerMsg.includes("why you") || lowerMsg.includes("difference")) {
+              botMsg.textContent =
+                "🌟 Because we deliver results — not just software. Our blend of AI expertise, agile delivery, and strong client focus "
+                + "ensures you get intelligent, reliable, and secure solutions that drive measurable ROI.";
+            }else if (lowerMsg.includes("service") || lowerMsg.includes("offer") || lowerMsg.includes("provide")) {
+              botMsg.textContent =
+                "💼 We offer Web & App Development, Automation, AI Solutions, Data Analytics, Cloud & DevOps, "
+                + "and IT Consulting — customized for startups and enterprises alike.";
+            }else if (lowerMsg.includes("custom") || lowerMsg.includes("tailor") || lowerMsg.includes("personal")){
+              botMsg.textContent =
+                "🧩 Absolutely! Every business is unique — we craft tailor-made solutions aligned with your goals and technology stack.";
+            }else if (lowerMsg.includes("process") || lowerMsg.includes("project") || lowerMsg.includes("workflow")) {
+              botMsg.textContent =
+                "🛠️ Our delivery model is agile and transparent — discovery → design → development → deployment → continuous support.";
+            }else if (lowerMsg.includes("contact") || lowerMsg.includes("demo") || lowerMsg.includes("meeting")) {
+              botMsg.textContent =
+                "📞 You can reach our team anytime at **support@hytechsoft.com** or fill out the contact form on our website for a demo.";
+            }else if (lowerMsg.includes("hello") || lowerMsg.includes("hi")) {
+              botMsg.textContent = `👋 Hello again ${userProfile.name || ""}! What would you like to explore today — automation, AI, or digital transformation?`;
+            }else {
+              botMsg.textContent =
+                "🤖 That’s interesting! I can tell you about our services, automation benefits, leadership, or technology approach. "
+                + "Try asking things like *Why choose Hyquantix?* or *How can automation help my business?*";
+            }
+
+        
+      }
+
+      messages.appendChild(botMsg);
+      messages.scrollTop = messages.scrollHeight;
+      input.value = "";
+    }, 1200);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("user-input");
+    input.addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Initialize all Lucide icons after the DOM is ready
+    if (window.lucide && lucide.createIcons) {
+      lucide.createIcons();
+    } else {
+      console.error("Lucide failed to load.");
+    }
+  });
+
+  
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXX');
+</script>
+
+</body>
+</html>
+

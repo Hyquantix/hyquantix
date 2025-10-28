@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="aiGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.1" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Glow -->
+  <rect width="1200" height="800" fill="url(#aiGradient)" />
+
+  <!-- Neural Lines -->
+  <g stroke="#06b6d4" stroke-opacity="0.25" stroke-width="1.2">
+    <line x1="200" y1="200" x2="400" y2="150"/>
+    <line x1="400" y1="150" x2="600" y2="250"/>
+    <line x1="600" y1="250" x2="800" y2="180"/>
+    <line x1="800" y1="180" x2="1000" y2="280"/>
+    <line x1="1000" y1="280" x2="900" y2="500"/>
+    <line x1="900" y1="500" x2="700" y2="600"/>
+    <line x1="700" y1="600" x2="500" y2="500"/>
+    <line x1="500" y1="500" x2="300" y2="600"/>
+    <line x1="300" y1="600" x2="200" y2="400"/>
+  </g>
+
+  <!-- Animated Nodes -->
+  <g fill="#06b6d4" fill-opacity="0.9">
+    <circle cx="200" cy="200" r="4">
+      <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="400" cy="150" r="3">
+      <animate attributeName="r" values="3;5;3" dur="4s" repeatCount="indefinite" begin="1s"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+    <circle cx="600" cy="250" r="4">
+      <animate attributeName="r" values="4;6;4" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+    <circle cx="800" cy="180" r="3.5">
+      <animate attributeName="r" values="3.5;5;3.5" dur="4.5s" repeatCount="indefinite" begin="2s"/>
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="4.5s" repeatCount="indefinite" begin="2s"/>
+    </circle>
+    <circle cx="1000" cy="280" r="5">
+      <animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+    </circle>
+    <circle cx="900" cy="500" r="4">
+      <animate attributeName="r" values="4;6;4" dur="4s" repeatCount="indefinite" begin="1s"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+    <circle cx="700" cy="600" r="3.5">
+      <animate attributeName="r" values="3.5;5;3.5" dur="5s" repeatCount="indefinite" begin="2s"/>
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="5s" repeatCount="indefinite" begin="2s"/>
+    </circle>
+    <circle cx="500" cy="500" r="4">
+      <animate attributeName="r" values="4;6;4" dur="4s" repeatCount="indefinite" begin="0.8s"/>
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="4s" repeatCount="indefinite" begin="0.8s"/>
+    </circle>
+    <circle cx="300" cy="600" r="3.5">
+      <animate attributeName="r" values="3.5;5;3.5" dur="4.5s" repeatCount="indefinite" begin="1.5s"/>
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="4.5s" repeatCount="indefinite" begin="1.5s"/>
+    </circle>
+    <circle cx="200" cy="400" r="4">
+      <animate attributeName="r" values="4;6;4" dur="3.5s" repeatCount="indefinite" begin="2s"/>
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="3.5s" repeatCount="indefinite" begin="2s"/>
+    </circle>
+  </g>
+</svg>
