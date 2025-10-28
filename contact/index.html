@@ -273,5 +273,20 @@
     overlay.addEventListener("click", closeMenu);
   });
 </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const current = window.location.pathname;
+  document.querySelectorAll('.nav-item').forEach(link => {
+    const href = link.getAttribute('href');
+    // Match exact path OR subfolder (e.g., /services/ and /services/apply/)
+    if (current === href || current.startsWith(href)) {
+      link.classList.add('text-cyan-600', 'font-semibold');
+    } else {
+      link.classList.remove('text-cyan-600', 'font-semibold');
+    }
+  });
+});
+</script>
+
 </body>
 </html>
