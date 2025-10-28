@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Hyquantix Technologies Pvt. Ltd.</title>
+  <link rel="icon" type="image/png"  href="logo2.png" />
+
+  <!-- Tailwind + Fonts + Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { 
+      font-family: 'Manrope', sans-serif; 
+      background-color: #f9fafb; 
+      color: #1f2937;
+    }
+    .nav-item { color: #374151; transition: color 0.3s ease; }
+    .nav-item:hover { color: #0ea5e9; }
+    .btn-primary {
+      background: linear-gradient(90deg, #06b6d4, #6366f1);
+      color: white; font-weight: 600;
+      padding: 0.7rem 1.6rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14,165,233,0.3); }
+    .section-title { font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 1rem; }
+    .ethos-box { 
+      background: white; 
+      border: 1px solid #e5e7eb; 
+      border-radius: 1rem; 
+      transition: all 0.3s ease; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .ethos-box:hover { border-color: #06b6d4; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/90 border-b border-gray-200 shadow-sm">
+  <div class="container mx-auto flex items-center justify-between px-6 py-4">
+    <div class="flex items-center space-x-3">
+      <a href="/">
+        <img src="logo.png" alt="Hyquantix Logo" class="w-32 md:w-40 h-auto object-contain">
+      </a>
+      <p class="hidden sm:block text-sm text-gray-500">Intelligent · Reliable · Secure</p>
+    </div>
+
+    <nav class="hidden md:flex space-x-8 font-medium">
+      <a href="/" class="nav-item">Home</a>
+      <a href="/about/" class="nav-item text-cyan-600 font-semibold">About</a>
+      <a href="/services/" class="nav-item">Services</a>
+      <a href="/career/" class="nav-item">Careers</a>
+      <a href="/contact/" class="nav-item">Contact</a>
+    </nav>
+
+    <a href="/impact/" class="hidden md:inline-block px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-md hover:shadow-lg transition">
+      Our Impact
+    </a>
+
+    <button id="menu-toggle" class="md:hidden text-gray-800 text-3xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- 🟦 Mobile Sidebar Menu -->
+<div id="mobile-menu-overlay"
+     class="fixed inset-0 bg-black/40 hidden z-40 transition-opacity duration-300 ease-in-out"></div>
+
+<div id="mobile-menu"
+     class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col p-8 space-y-6">
+  <button id="close-menu" class="self-end text-3xl text-gray-600 hover:text-cyan-600">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <nav class="flex flex-col space-y-5 text-lg font-medium">
+    <a href="/" class="nav-item">Home</a>
+    <a href="/about/" class="nav-item text-cyan-600 font-semibold">About</a>
+    <a href="/services/" class="nav-item">Services</a>
+    <a href="/career/" class="nav-item">Careers</a>
+    <a href="/contact/" class="nav-item">Contact</a>
+    <a href="/impact/" class="btn-primary w-full text-center py-3 rounded-full">Our Impact</a>
+  </nav>
+</div>
+
+
+  <!-- Hero -->
+  <section class="relative pt-40 pb-24 text-center bg-gradient-to-b from-white via-gray-50 to-gray-100">
+    <div class="container mx-auto px-6">
+      <h1 class="text-5xl font-extrabold text-gray-900 mb-4">About <span class="text-cyan-600">Hyquantix</span></h1>
+      <p class="max-w-2xl mx-auto text-gray-600 text-lg">
+        Hyquantix Technologies is a next-generation digital transformation partner delivering 
+        intelligent, reliable, and secure solutions that help enterprises scale with confidence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Who We Are -->
+  <section class="relative py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 border-y border-gray-200 overflow-hidden">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+    <!-- Left: Image -->
+    <div class="relative group">
+      <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-indigo-500/10 rounded-xl blur-2xl scale-105 opacity-70 group-hover:opacity-90 transition"></div>
+      <img src="about-team.jpg" alt="Hyquantix Team Collaboration" 
+           class="relative rounded-2xl shadow-xl w-full object-cover transform group-hover:scale-[1.03] transition duration-700 ease-out">
+    </div>
+
+    <!-- Right: Content -->
+    <div>
+      <div class="mb-4 inline-block px-4 py-1 rounded-full bg-cyan-50 text-cyan-600 font-medium text-sm border border-cyan-200">
+        About Hyquantix
+      </div>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+        Who We Are
+      </h2>
+      <p class="text-gray-700 text-lg leading-relaxed mb-6">
+        <strong>Hyquantix Technologies Pvt. Ltd.</strong> is a trusted <strong>IT solutions partner</strong> specializing in 
+        <span class="text-cyan-600 font-semibold">automation</span>, 
+        <span class="text-indigo-600 font-semibold">cloud transformation</span>, and 
+        <span class="text-cyan-600 font-semibold">intelligent digital systems</span>. 
+        We empower enterprises to unlock new efficiencies, modernize their infrastructure, 
+        and strengthen digital security across every layer.
+      </p>
+
+      <p class="text-gray-700 text-lg leading-relaxed mb-6">
+        Our expertise spans <strong>web and mobile application development</strong>, 
+        <strong>payment gateway integrations</strong>, 
+        <strong>AI-driven automation</strong>, 
+        <strong>cloud deployment</strong>, 
+        <strong>data analytics</strong>, and 
+        <strong>custom API solutions</strong> — all designed to streamline business operations and accelerate growth.
+      </p>
+
+      <p class="text-gray-700 text-lg leading-relaxed mb-8">
+        By combining deep domain expertise with data-driven intelligence, 
+        Hyquantix delivers <strong>scalable, secure, and measurable solutions</strong> 
+        that empower organizations globally.
+      </p>
+
+      <a href="/services/" class="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold px-8 py-3 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition duration-300">
+        Explore Our Services
+      </a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- What Drives Us -->
+  <section class="py-24 bg-gray-50 text-center">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <h2 class="section-title mb-8 text-gray-900">What Drives Us</h2>
+      <p class="text-gray-600 max-w-3xl mx-auto mb-12">
+        Our culture is built around intelligence, reliability, and integrity — principles that define how we think, build, and lead.  
+        This is the <span class="text-cyan-600 font-semibold">Hyquantix Ethos</span>.
+      </p>
+
+      <!-- Core Values -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+        <div class="ethos-box p-6">
+          <h4 class="text-gray-900 font-semibold mb-2">Intelligence in Action</h4>
+          <p class="text-gray-600 text-sm">We think ahead — engineering smart, adaptive solutions that empower our clients to stay future-ready.</p>
+        </div>
+
+        <div class="ethos-box p-6">
+          <h4 class="text-gray-900 font-semibold mb-2">Reliability Above All</h4>
+          <p class="text-gray-600 text-sm">Every line of code and every client interaction is built on trust, consistency, and performance.</p>
+        </div>
+
+        <div class="ethos-box p-6">
+          <h4 class="text-gray-900 font-semibold mb-2">Integrity in Every Layer</h4>
+          <p class="text-gray-600 text-sm">We uphold transparency and accountability — doing what’s right, always.</p>
+        </div>
+
+        <div class="ethos-box p-6">
+          <h4 class="text-gray-900 font-semibold mb-2">Collaboration with Purpose</h4>
+          <p class="text-gray-600 text-sm">We believe that innovation thrives in shared vision, empathy, and partnership.</p>
+        </div>
+
+        <div class="ethos-box p-6">
+          <h4 class="text-gray-900 font-semibold mb-2">Relentless Innovation</h4>
+          <p class="text-gray-600 text-sm">We continuously evolve — turning challenges into opportunities through technology and creativity.</p>
+        </div>
+      </div>
+
+      <!-- Working Principles -->
+      <div class="mt-16 text-left">
+        <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Our Working Principles</h3>
+        <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <li class="ethos-box p-5 text-gray-600 text-sm">Think Ahead — We anticipate and prepare for tomorrow.</li>
+          <li class="ethos-box p-5 text-gray-600 text-sm">Be Precise — Excellence is engineered, not accidental.</li>
+          <li class="ethos-box p-5 text-gray-600 text-sm">Stay Accountable — We own our words, work, and outcomes.</li>
+          <li class="ethos-box p-5 text-gray-600 text-sm">Communicate Clearly — Transparency drives progress.</li>
+          <li class="ethos-box p-5 text-gray-600 text-sm">Build Trust, Every Day — Trust is earned through consistency.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="py-20 bg-white border-t border-gray-200 text-center">
+    <div class="container mx-auto px-6 max-w-5xl">
+      <h2 class="section-title mb-6 text-gray-900">Our Mission & Vision</h2>
+      <p class="text-gray-600 mb-10">
+        At Hyquantix, we aim to transform how businesses operate — building technology that drives intelligent growth, efficiency, and trust.
+      </p>
+      <div class="grid md:grid-cols-2 gap-8 text-left">
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-8 hover:border-cyan-400 transition-all">
+          <div class="flex items-center mb-4">
+            <div data-lucide="target" class="w-8 h-8 text-cyan-600"></div>
+            <h4 class="ml-3 text-lg font-semibold text-gray-900">Our Mission</h4>
+          </div>
+          <p class="text-gray-600 leading-relaxed">
+            To empower organizations with intelligent, reliable, and secure technology that accelerates digital transformation and builds long-term value.
+          </p>
+        </div>
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-8 hover:border-cyan-400 transition-all">
+          <div class="flex items-center mb-4">
+            <div data-lucide="eye" class="w-8 h-8 text-cyan-600"></div>
+            <h4 class="ml-3 text-lg font-semibold text-gray-900">Our Vision</h4>
+          </div>
+          <p class="text-gray-600 leading-relaxed">
+            To be a globally recognized partner for intelligent enterprise solutions, transforming data into action and technology into trust.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section class="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100 text-center border-t border-gray-200">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <div class="mb-16">
+      <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Leadership Team</h2>
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+        Meet the visionaries driving Hyquantix’s innovation, integrity, and intelligent digital growth.
+      </p>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <!-- Card 1 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 hover:border-cyan-400 hover:shadow-2xl transition-all duration-300 overflow-hidden">
+        <div class="relative h-52 bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+          <img src="brajesh.jpg" alt="Brajesh Kumar Singh" class="w-28 h-28 object-cover rounded-full border-4 border-white shadow-md group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/150';">
+        </div>
+        <div class="p-6">
+          <h4 class="text-lg font-semibold text-gray-900">Brajesh Kumar Singh</h4>
+          <p class="text-cyan-600 text-sm mb-4">Founder & Director</p>
+          <p class="text-gray-600 text-sm leading-relaxed">A strategic leader ensuring operational excellence and sustainable growth across Hyquantix’s ventures.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 hover:border-cyan-400 hover:shadow-2xl transition-all duration-300 overflow-hidden">
+        <div class="relative h-52 bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center">
+          <img src="gaurav.png" alt="Gaurav Singh" class="w-28 h-28 object-cover rounded-full border-4 border-white shadow-md group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/150';">
+        </div>
+        <div class="p-6">
+          <h4 class="text-lg font-semibold text-gray-900">Gaurav Singh</h4>
+          <p class="text-cyan-600 text-sm mb-4">CEO & Managing Director</p>
+          <p class="text-gray-600 text-sm leading-relaxed">Vision-driven entrepreneur leading Hyquantix’s mission to deliver intelligent, reliable, and secure digital transformation.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 hover:border-cyan-400 hover:shadow-2xl transition-all duration-300 overflow-hidden">
+        <div class="relative h-52 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+          <img src="priti.jpg" alt="Priti Singh" class="w-28 h-28 object-cover rounded-full border-4 border-white shadow-md group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/150';">
+        </div>
+        <div class="p-6">
+          <h4 class="text-lg font-semibold text-gray-900">Priti Singh</h4>
+          <p class="text-cyan-600 text-sm mb-4">Chief Technology Officer</p>
+          <p class="text-gray-600 text-sm leading-relaxed">Tech innovator overseeing product engineering, AI initiatives, and cloud architecture excellence.</p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 hover:border-cyan-400 hover:shadow-2xl transition-all duration-300 overflow-hidden">
+        <div class="relative h-52 bg-gradient-to-br from-cyan-500 to-indigo-500 flex items-center justify-center">
+          <img src="baid.jpg" alt="Baid Prakash Sah" class="w-28 h-28 object-cover rounded-full border-4 border-white shadow-md group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/150';">
+        </div>
+        <div class="p-6">
+          <h4 class="text-lg font-semibold text-gray-900">Baid Prakash Sah</h4>
+          <p class="text-cyan-600 text-sm mb-4">Head of Operations</p>
+          <p class="text-gray-600 text-sm leading-relaxed">Operational strategist ensuring project delivery, team alignment, and client satisfaction at every step.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-50 border-t border-gray-200 py-12 text-gray-500 text-sm" style="font-family: 'Manrope', sans-serif;">
+    <div class="container mx-auto px-6 grid sm:grid-cols-2 md:grid-cols-4 gap-8 text-center md:text-left">
+      <div>
+        <h4 class="text-base font-semibold text-gray-900 mb-3 tracking-wide">Hyquantix Technologies</h4>
+        <p class="text-gray-600 leading-relaxed mb-3">
+          Intelligent, reliable, and secure digital solutions built for scalable growth.
+        </p>
+        <p class="text-gray-400 text-xs">GautamBudh Nagar, India</p>
+      </div>
+      <div>
+        <h5 class="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">Company</h5>
+        <ul class="space-y-1">
+          <li><a href="/about/" class="hover:text-cyan-600 transition">About</a></li>
+          <li><a href="/career/" class="hover:text-cyan-600 transition">Careers</a></li>
+          <li><a href="/services/" class="hover:text-cyan-600 transition">Services</a></li>
+          <li><a href="/contact/" class="hover:text-cyan-600 transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">Resources</h5>
+        <ul class="space-y-1">
+          <li><a href="privacy.html" class="hover:text-cyan-600 transition">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-cyan-600 transition">Terms</a></li>
+          <li><a href="#" class="hover:text-cyan-600 transition">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">Contact</h5>
+        <p class="text-gray-600 mb-1">📧 support@hyquantix.com</p>
+        <p class="text-gray-600 mb-3">📞 +91-8700790835</p>
+        <div class="flex justify-center md:justify-start space-x-4 text-lg">
+          <a href="#" class="hover:text-cyan-600 transition"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="hover:text-cyan-600 transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-cyan-600 transition"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 mt-10 pt-4 text-center text-xs text-gray-400">
+      © 2025 <span class="text-gray-600">Hyquantix Technologies Pvt. Ltd.</span> · All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      lucide.createIcons();
+    });
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("menu-toggle");
+    const closeBtn = document.getElementById("close-menu");
+    const menu = document.getElementById("mobile-menu");
+    const overlay = document.getElementById("mobile-menu-overlay");
+
+    function openMenu() {
+      menu.classList.remove("translate-x-full");
+      overlay.classList.remove("hidden");
+      overlay.classList.add("opacity-100");
+      document.body.style.overflow = "hidden"; // disable scroll
+    }
+
+    function closeMenu() {
+      menu.classList.add("translate-x-full");
+      overlay.classList.add("hidden");
+      document.body.style.overflow = "auto";
+    }
+
+    toggle.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+  });
+</script>
+</body>
+</html>
