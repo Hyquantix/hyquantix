@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apply — Hyquantix Careers</title>
+  <link rel="icon" type="image/png"  href="logo2.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+    body { font-family: 'Manrope', system-ui, -apple-system, "Segoe UI", Roboto, Arial; background: #f8fafc; color: #0f172a; }
+    .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); border: 1px solid rgba(15,23,42,0.08); }
+    .btn-primary { background: linear-gradient(90deg,#06b6d4,#6366f1); color: #fff; font-weight: 700; padding: .75rem 1.4rem; border-radius: 9999px; }
+    .btn-primary:hover { transform: translateY(-3px); transition: .18s; box-shadow: 0 14px 30px rgba(99,102,241,.12); }
+    label > div { color: #0f172a; }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/90 border-b border-gray-200 shadow-sm">
+  <div class="container mx-auto flex items-center justify-between px-6 py-4">
+    <div class="flex items-center space-x-3">
+      <a href="/">
+        <img src="logo.png" alt="Hyquantix Logo" class="w-32 md:w-40 h-auto object-contain">
+      </a>
+      <p class="hidden sm:block text-sm text-gray-500">Intelligent · Reliable · Secure</p>
+    </div>
+
+    <nav class="hidden md:flex space-x-8 font-medium">
+      <a href="/" class="nav-item">Home</a>
+      <a href="/about/" class="nav-item text-cyan-600 font-semibold">About</a>
+      <a href="/services/" class="nav-item">Services</a>
+      <a href="/career/" class="nav-item">Careers</a>
+      <a href="/contact/" class="nav-item">Contact</a>
+    </nav>
+
+    <a href="/impact/" class="hidden md:inline-block px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-md hover:shadow-lg transition">
+      Our Impact
+    </a>
+
+    <button id="menu-toggle" class="md:hidden text-gray-800 text-3xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- 🟦 Mobile Sidebar Menu -->
+<div id="mobile-menu-overlay"
+     class="fixed inset-0 bg-black/40 hidden z-40 transition-opacity duration-300 ease-in-out"></div>
+
+<div id="mobile-menu"
+     class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col p-8 space-y-6">
+  <button id="close-menu" class="self-end text-3xl text-gray-600 hover:text-cyan-600">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <nav class="flex flex-col space-y-5 text-lg font-medium">
+    <a href="/" class="nav-item">Home</a>
+    <a href="/about/" class="nav-item text-cyan-600 font-semibold">About</a>
+    <a href="/services/" class="nav-item">Services</a>
+    <a href="/career/" class="nav-item">Careers</a>
+    <a href="/contact/" class="nav-item">Contact</a>
+    <a href="/impact/" class="btn-primary w-full text-center py-3 rounded-full">Our Impact</a>
+  </nav>
+</div>
+
+  <!-- HERO -->
+  <section class="pt-24 pb-8">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <h1 class="text-4xl font-extrabold leading-tight">Apply to Hyquantix</h1>
+        <p class="text-slate-600">Tell us about yourself — upload your resume and we'll get back to you. All applications are securely stored and reviewed by our HR team.</p>
+        <div class="flex gap-4">
+          <a href="#apply" class="btn-primary">Apply Now</a>
+          <a href="/career/" class="px-5 py-3 rounded-full border text-sm">Open Positions</a>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <div class="w-[420px] h-[320px]">
+          <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_ydo1amjm.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="apply" class="pb-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="glass rounded-2xl p-8 shadow-lg space-y-10">
+        <h2 class="text-2xl font-bold mb-2">Job Application Form</h2>
+        <p class="text-sm text-slate-600">Complete all fields below and attach your resume (PDF / DOC / DOCX). Max 8 MB.</p>
+
+        <form id="applyForm" class="space-y-10">
+          <!-- Section 1: Personal Details -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-slate-800 border-b pb-2">Personal Information</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <label>
+                <div class="text-sm font-semibold mb-1">Full Name *</div>
+                <input required id="name" class="w-full rounded-lg border px-4 py-2" placeholder="Jane Doe">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Email *</div>
+                <input required id="email" type="email" class="w-full rounded-lg border px-4 py-2" placeholder="jane@company.com">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Phone</div>
+                <input id="phone" class="w-full rounded-lg border px-4 py-2" placeholder="+91 9XXXXXXXXX">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Location</div>
+                <input id="location" class="w-full rounded-lg border px-4 py-2" placeholder="Bangalore / Remote">
+              </label>
+            </div>
+          </div>
+
+          <!-- Section 2: Education -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-slate-800 border-b pb-2">Education & Qualifications</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <label>
+                <div class="text-sm font-semibold mb-1">Highest Qualification *</div>
+                <input required id="qualification" class="w-full rounded-lg border px-4 py-2" placeholder="B.Tech in Computer Science">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">University / College *</div>
+                <input required id="university" class="w-full rounded-lg border px-4 py-2" placeholder="IIT Bombay / Christ University">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Year of Graduation *</div>
+                <input required id="graduationYear" type="number" class="w-full rounded-lg border px-4 py-2" placeholder="2024">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">CGPA / Percentage</div>
+                <input id="cgpa" class="w-full rounded-lg border px-4 py-2" placeholder="8.5 CGPA or 85%">
+              </label>
+            </div>
+          </div>
+
+          <!-- Section 3: Professional -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-slate-800 border-b pb-2">Professional Information</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <label>
+                <div class="text-sm font-semibold mb-1">Position Applying For *</div>
+                <select required id="position" class="w-full rounded-lg border px-4 py-2">
+                  <option value="">Select position</option>
+                  <option>Frontend Developer</option>
+                  <option>Backend Engineer</option>
+                  <option>UI/UX Designer</option>
+                  <option>DevOps / SRE</option>
+                  <option>Data Analyst</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Experience (years)</div>
+                <input id="experience" class="w-full rounded-lg border px-4 py-2" placeholder="e.g., 2.5">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Key Skills *</div>
+                <input required id="skills" class="w-full rounded-lg border px-4 py-2" placeholder="React, Node.js, Figma, Python...">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">LinkedIn Profile</div>
+                <input id="linkedin" class="w-full rounded-lg border px-4 py-2" placeholder="https://linkedin.com/in/username">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Portfolio / GitHub</div>
+                <input id="portfolio" class="w-full rounded-lg border px-4 py-2" placeholder="https://github.com/username">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Current CTC (₹)</div>
+                <input id="currentCtc" class="w-full rounded-lg border px-4 py-2" placeholder="e.g., 8 LPA">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Expected CTC (₹)</div>
+                <input id="expectedCtc" class="w-full rounded-lg border px-4 py-2" placeholder="e.g., 10 LPA">
+              </label>
+              <label>
+                <div class="text-sm font-semibold mb-1">Notice Period</div>
+                <input id="noticePeriod" class="w-full rounded-lg border px-4 py-2" placeholder="e.g., 30 days">
+              </label>
+            </div>
+
+            <label class="block mt-4">
+              <div class="text-sm font-semibold mb-1">Message / Cover Note</div>
+              <textarea id="message" rows="4" class="w-full rounded-lg border px-4 py-2" placeholder="Tell us why you’d be a great fit..."></textarea>
+            </label>
+          </div>
+
+          <!-- Section 4: Attach Resume -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-slate-800 border-b pb-2">Attachments</h3>
+            <label class="block">
+              <div class="text-sm font-semibold mb-1">Resume (PDF / DOC / DOCX) *</div>
+              <input required id="resume" type="file" accept=".pdf,.doc,.docx" class="w-full border rounded-lg px-3 py-2">
+              <p class="text-xs text-slate-500 mt-1">Max 8 MB. We store resumes securely on Google Drive.</p>
+            </label>
+          </div>
+
+          <div class="flex items-center gap-4 pt-6">
+            <button id="submitBtn" type="submit" class="btn-primary">Submit Application</button>
+            <div id="status" class="text-sm text-slate-600"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <div id="successPopup" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm text-center transform transition-all scale-95 opacity-0" id="popupCard">
+    <div class="text-green-500 text-5xl mb-3">✅</div>
+    <h3 class="text-xl font-bold text-slate-800 mb-2">Application Submitted!</h3>
+    <p class="text-slate-600 mb-6">Thank you for applying to <strong>Hyquantix</strong>.<br>Our HR team will get in touch soon.</p>
+    <button onclick="closePopup()" class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-full px-5 py-2 shadow-md transition">Return to Careers</button>
+  </div>
+</div>
+
+  <footer class="py-12 text-center text-sm text-slate-500">
+    © 2025 Hyquantix Technologies Pvt. Ltd. · All Rights Reserved.
+  </footer>
+
+<script>
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwgwjMm-YoHVvbvqvLsTMHhrvU3m_WX7jPhFE8OhZCnAfqdUZ72nC0PITRPSEet__pfTQ/exec";
+
+const form = document.getElementById("applyForm");
+const resumeInput = document.getElementById("resume");
+const statusDiv = document.getElementById("status");
+const submitBtn = document.getElementById("submitBtn");
+
+/* Auto-prefill "Position Applying For" from ?position= query */
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const position = urlParams.get("position");
+  if (position) {
+    const positionSelect = document.getElementById("position");
+    let matched = false;
+
+    for (const option of positionSelect.options) {
+      if (option.text.toLowerCase() === position.toLowerCase()) {
+        option.selected = true;
+        matched = true;
+        break;
+      }
+    }
+
+    // if position not found in dropdown → dynamically add it
+    if (!matched) {
+      const opt = document.createElement("option");
+      opt.text = position;
+      opt.value = position;
+      opt.selected = true;
+      positionSelect.add(opt);
+    }
+
+    // Optional: visually scroll user to the form
+    setTimeout(() => {
+      document.getElementById("apply").scrollIntoView({ behavior: "smooth" });
+    }, 400);
+  }
+});
+
+/* Helper function for base64 conversion */
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = e => reject(e);
+    reader.readAsDataURL(file);
+  });
+}
+
+function val(id) {
+  return document.getElementById(id)?.value?.trim() || "";
+}
+
+/* Form submission logic */
+form.addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  statusDiv.textContent = "";
+
+  const file = resumeInput.files[0];
+  if (!file) return (statusDiv.textContent = "Please attach your resume.");
+  if (file.size > 8 * 1024 * 1024) return (statusDiv.textContent = "Resume too large (max 8 MB).");
+
+  const payload = {
+    name: val("name"), email: val("email"), phone: val("phone"),
+    position: val("position"), experience: val("experience"), location: val("location"),
+    qualification: val("qualification"), university: val("university"), graduationYear: val("graduationYear"),
+    cgpa: val("cgpa"), skills: val("skills"), linkedin: val("linkedin"), portfolio: val("portfolio"),
+    currentCtc: val("currentCtc"), expectedCtc: val("expectedCtc"), noticePeriod: val("noticePeriod"),
+    message: val("message"), filename: file.name, filetype: file.type || "application/octet-stream"
+  };
+
+  submitBtn.disabled = true;
+  statusDiv.textContent = "Uploading your resume...";
+
+  try {
+    const base64 = await fileToBase64(file);
+    payload.filedata = base64.split(",")[1];
+    const isLocal = ["127.0.0.1", "localhost"].includes(location.hostname);
+    const resp = await fetch(WEB_APP_URL, {
+      method: "POST",
+      mode: isLocal ? "no-cors" : "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (isLocal) {
+  showSuccessPopup();
+  form.reset();
+  return;
+}
+
+    const result = await resp.json();
+    if (result.status === "success") {
+      statusDiv.innerHTML = '<span style="color:green;font-weight:600">Application submitted — thank you!</span>';
+      form.reset();
+    } else {
+      statusDiv.innerHTML = '<span style="color:red">Error: Submission failed.</span>';
+    }
+  } catch (err) {
+    console.error(err);
+    statusDiv.innerHTML = '<span style="color:red">Network error — could not submit.</span>';
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+</script>
+<script>
+// --- Success Popup Logic ---
+function showSuccessPopup() {
+  const popup = document.getElementById("successPopup");
+  const card = document.getElementById("popupCard");
+  popup.classList.remove("hidden");
+
+  // Animate in
+  setTimeout(() => {
+    card.classList.remove("scale-95", "opacity-0");
+    card.classList.add("scale-100", "opacity-100");
+  }, 100);
+
+  // Optional: auto-close after few seconds
+  setTimeout(() => closePopup(), 7000);
+}
+
+function closePopup() {
+  const popup = document.getElementById("successPopup");
+  const card = document.getElementById("popupCard");
+
+  // Animate out
+  card.classList.add("scale-95", "opacity-0");
+  setTimeout(() => {
+    popup.classList.add("hidden");
+    // Redirect back to career page
+    window.location.href = "career.html";
+  }, 300);
+}
+</script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("menu-toggle");
+    const closeBtn = document.getElementById("close-menu");
+    const menu = document.getElementById("mobile-menu");
+    const overlay = document.getElementById("mobile-menu-overlay");
+
+    function openMenu() {
+      menu.classList.remove("translate-x-full");
+      overlay.classList.remove("hidden");
+      overlay.classList.add("opacity-100");
+      document.body.style.overflow = "hidden"; // disable scroll
+    }
+
+    function closeMenu() {
+      menu.classList.add("translate-x-full");
+      overlay.classList.add("hidden");
+      document.body.style.overflow = "auto";
+    }
+
+    toggle.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+  });
+</script>
+
+</body>
+</html>
