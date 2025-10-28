@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Impact | Hyquantix Technologies Pvt. Ltd.</title>
+
+  <!-- Tailwind & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: radial-gradient(circle at 20% 20%, #e0f7fa, #ffffff 60%);
+      color: #1f2937;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .floating-icon {
+      position: absolute;
+      opacity: 0.2;
+      color: #0ea5e9;
+      animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-25px) rotate(8deg); }
+    }
+
+    .animated-gradient-text {
+      background: linear-gradient(90deg, #06b6d4, #6366f1, #0ea5e9);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: flowGradient 6s ease-in-out infinite;
+    }
+
+    @keyframes flowGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .btn-gradient {
+      background: linear-gradient(90deg, #06b6d4, #6366f1);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      box-shadow: 0 8px 25px rgba(14,165,233,0.25);
+      transition: all 0.3s ease;
+    }
+    .btn-gradient:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(14,165,233,0.4);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/90 border-b border-gray-200 shadow-sm">
+  <div class="container mx-auto flex items-center justify-between px-6 py-4">
+    <div class="flex items-center space-x-3">
+      <a href="/">
+        <img src="logo.png" alt="Hyquantix Logo" class="w-32 md:w-40 h-auto object-contain">
+      </a>
+      <p class="hidden sm:block text-sm text-gray-500">Intelligent · Reliable · Secure</p>
+    </div>
+
+    <nav class="hidden md:flex space-x-8 font-medium">
+      <a href="/" class="nav-item">Home</a>
+      <a href="/about/" class="nav-item text-cyan-600 font-semibold">About</a>
+      <a href="/services/" class="nav-item">Services</a>
+      <a href="/career/" class="nav-item">Careers</a>
+      <a href="/contact/" class="nav-item">Contact</a>
+    </nav>
+
+    <a href="/impact/" class="hidden md:inline-block px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-md hover:shadow-lg transition">
+      Our Impact
+    </a>
+
+    <button id="menu-toggle" class="md:hidden text-gray-800 text-3xl focus:outline-none">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<!-- 🟦 Mobile Sidebar Menu -->
+<div id="mobile-menu-overlay"
+     class="fixed inset-0 bg-black/40 hidden z-40 transition-opacity duration-300 ease-in-out"></div>
+
+<div id="mobile-menu"
+     class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col p-8 space-y-6">
+  <button id="close-menu" class="self-end text-3xl text-gray-600 hover:text-cyan-600">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <nav class="flex flex-col space-y-5 text-lg font-medium">
+    <a href="/" class="nav-item">Home</a>
+    <a href="/about/" class="nav-item text-cyan-600 font-semibold">About</a>
+    <a href="/services/" class="nav-item">Services</a>
+    <a href="/career/" class="nav-item">Careers</a>
+    <a href="/contact/" class="nav-item">Contact</a>
+    <a href="/impact/" class="btn-primary w-full text-center py-3 rounded-full">Our Impact</a>
+  </nav>
+</div>
+
+  <!-- Floating Lucide icons background -->
+  <div class="absolute top-40 left-10 w-12 h-12 floating-icon" data-lucide="cpu"></div>
+  <div class="absolute top-72 right-20 w-16 h-16 floating-icon" data-lucide="sparkles" style="animation-delay: 2s;"></div>
+  <div class="absolute bottom-40 left-1/3 w-14 h-14 floating-icon" data-lucide="activity" style="animation-delay: 4s;"></div>
+  <div class="absolute top-1/3 right-1/4 w-14 h-14 floating-icon" data-lucide="cloud" style="animation-delay: 6s;"></div>
+  <div class="absolute bottom-24 right-10 w-12 h-12 floating-icon" data-lucide="globe" style="animation-delay: 3s;"></div>
+
+  <!-- Coming Soon Section -->
+  <main class="flex flex-col justify-center items-center text-center min-h-screen px-6 pt-24 md:pt-40 relative z-10">
+    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight md:leading-[1.3] animated-gradient-text">
+  Our Impact Page is Coming Soon
+</h1>
+
+
+    <p class="text-gray-600 max-w-2xl mb-10 text-lg leading-relaxed">
+      We’re preparing to showcase how Hyquantix’s technology creates measurable change across industries —
+      energy, automation, data, and people. Stay tuned for a meaningful reveal.
+    </p>
+    <a href="/contact/" class="btn-gradient inline-flex items-center gap-2">
+      <i class="fa-solid fa-envelope"></i> Contact Us
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 bg-white py-6 text-center text-sm text-gray-500">
+    © <span id="year"></span> Hyquantix Technologies Pvt. Ltd. — All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    lucide.createIcons();
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("menu-toggle");
+    const closeBtn = document.getElementById("close-menu");
+    const menu = document.getElementById("mobile-menu");
+    const overlay = document.getElementById("mobile-menu-overlay");
+
+    function openMenu() {
+      menu.classList.remove("translate-x-full");
+      overlay.classList.remove("hidden");
+      overlay.classList.add("opacity-100");
+      document.body.style.overflow = "hidden"; // disable scroll
+    }
+
+    function closeMenu() {
+      menu.classList.add("translate-x-full");
+      overlay.classList.add("hidden");
+      document.body.style.overflow = "auto";
+    }
+
+    toggle.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+  });
+</script>
+</body>
+</html>
