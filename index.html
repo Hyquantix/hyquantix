@@ -411,19 +411,29 @@ animation: gradientFlux 5.8s ease-in-out infinite;
       <a href="/contact/" class="nav-item">Contact</a>
     </nav>
     <a href="/impact/" class="hidden md:inline-block btn-primary">Our Impact</a>
-    <button id="menu-toggle" class="md:hidden text-3xl"><i class="fa-solid fa-bars"></i></button>
+    <button id="menu-toggle" class="md:hidden text-white text-3xl !text-white">
+  <i class="fa-solid fa-bars text-white !text-white"></i>
+</button>
+
   </div>
 </header>
 
+
 <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 hidden z-40"></div>
-<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 shadow-2xl translate-x-full z-50 flex flex-col p-8 space-y-6">
-  <button id="close-menu" class="self-end text-3xl text-gray-300"><i class="fa-solid fa-xmark"></i></button>
+
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-[#0b0f19] shadow-2xl translate-x-full z-50 flex flex-col p-8 space-y-6">
+  
+
+  <button id="close-menu" class="self-end text-3xl text-white transition hover:text-cyan-400">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
   <nav class="flex flex-col space-y-5 text-lg font-medium">
     <a href="/" class="nav-item text-cyan-400 font-semibold">Home</a>
-    <a href="/about/" class="nav-item">About</a>
-    <a href="/services/" class="nav-item">Services</a>
-    <a href="/career/" class="nav-item">Careers</a>
-    <a href="/contact/" class="nav-item">Contact</a>
+    <a href="/about/" class="nav-item text-white">About</a>
+    <a href="/services/" class="nav-item text-white">Services</a>
+    <a href="/career/" class="nav-item text-white">Careers</a>
+    <a href="/contact/" class="nav-item text-white">Contact</a>
     <a href="/impact/" class="btn-primary w-full text-center py-3">Our Impact</a>
   </nav>
 </div>
@@ -1320,6 +1330,7 @@ AOS.init({
 </script>
 </body>
 </html>
+
 
 
 
