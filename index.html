@@ -57,25 +57,226 @@
 
 
   <!-- Tailwind & Fonts -->
-  <script src="https://cdn.tailwindcss.com"></script>
+ <script src="https://cdn.tailwindcss.com"></script>
   
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://kit.fontawesome.com/a2e0e6b6b4.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     body {
       font-family: 'Manrope', sans-serif;
-      background-color: #f9fafb;
-      color: #1f2937;
+      background-color: #040505;
+      color: #000000;
     }
+    .neon-gradient{
+      background: linear-gradient(90deg,#00ffe7,#3b6cff,#9b5cff,#ff4ad8,#ffb830,#00ffe7);
+      background-size: 400% 400%;
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      animation: neonFlow 5.5s linear infinite;
+    }
+    @keyframes neonFlow { to { background-position: 400% 50%; } }
+
+    .hud-ring-spin { animation: spin 22s linear infinite; }
+    .hud-ring-spin-rev { animation: spin 26s linear reverse infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Soft fade-in on content */
+    .fade-in {
+      opacity: 0; transform: translateY(10px) scale(.98);
+      animation: fadeIn .9s ease-out .2s forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* WebGL fallback message */
+    #fallback {
+      position: fixed; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      color: #e5e7eb; background: #0b0d16;
+      padding: 24px; text-align: center;
+    }
+    .btn-primary {
+      padding: 14px 30px; border-radius: 9999px; font-weight: 700;
+      background: linear-gradient(90deg,#06b6d4,#3b82f6); color: white;
+      box-shadow: 0 10px 30px rgba(59,130,246,.35);
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    .btn-primary:hover { opacity:.92; transform: translateY(-1px) scale(1.02); }
+    .btn-ghost {
+      padding: 14px 30px; border-radius: 9999px; font-weight: 700;
+      border: 1px solid rgba(255,255,255,.28);
+      backdrop-filter: blur(6px); color: #e5e7eb;
+      transition: background .18s ease, transform .18s ease;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.08); transform: translateY(-1px); }
+
+    /* Ensure canvas renders crisply */
+    canvas { display:block; }
+    .morph {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.morph.show {
+  opacity: 1;
+  transform: scale(1);
+}
+#morphWord {
+  display: inline-block;
+  transition: opacity .4s ease-in-out;
+}
+#evolveLine {
+  font-weight: 700;
+  display: inline-block;
+  transition: 
+    opacity .6s ease,
+    transform .6s cubic-bezier(.16,.84,.44,1),
+    filter .6s ease;
+  
+  color: #e8ecf3;
+  text-shadow: none;
+
+  letter-spacing: -0.5px;
+
+  /* premium subtle depth */
+  transform-origin: center;
+}
+.intel-text {
+  color: rgba(255,255,255,0.88);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  backdrop-filter: blur(5px);
+  text-shadow:
+    0px 0px 12px rgba(255,255,255,0.08),
+    0px 0px 32px rgba(120,180,255,0.10);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.intel-text.reveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.intel-text.hidden {
+  opacity: 0;
+  transform: translateY(10px) scale(.97);
+}
+/* Neural-Liquid Flow Text */
+.evo-text-ai {
+  position: relative;
+  display: inline-block;
+  color: #fff0;
+  -webkit-text-stroke: .8px rgba(255,255,255,0.6);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(120deg, #15ffff, #6c63ff, #ff49e1, #ffe260, #15ffff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  text-shadow: 0 0 14px rgba(0,255,255,.2);
+  transition: filter .5s ease, transform .5s ease;
+  animation: colorFlow 6s ease infinite;
+}
+
+@keyframes colorFlow {
+  0% { background-position: 0% 50%; filter: brightness(.9); }
+  50% { background-position: 100% 50%; filter: brightness(1.3); }
+  100% { background-position: 0% 50%; filter: brightness(.9); }
+}
+
+/* Energy Spread Highlight */
+.evo-text-ai span {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(18px) scale(.9);
+  transition: all .5s cubic-bezier(.16,.84,.44,1);
+}
+
+/* active reveal pulse per-letter */
+.evo-text-ai span.reveal {
+  opacity: 1;
+  filter: blur(0) saturate(1.4);
+  transform: translateY(0) scale(1.07);
+  text-shadow:
+    0 0 22px rgba(0,255,255,.5),
+    0 0 48px rgba(255,100,255,.3);
+}
+
+#evolveLine {
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  letter-spacing: -0.3px;
+  
+background: linear-gradient(
+  110deg,
+  #f2f6ff 0%,
+  #a1b2d8 18%,
+  #834343 40%,
+  #8fb6ff 60%,
+  #788cff 78%,
+  #3760d1 100%
+);
+background-size: 220% 220%;
+animation: gradientFlux 5.8s ease-in-out infinite;
+
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  opacity: 0;
+  transform: translateY(8px) scale(.97);
+  
+  /* Subtle glow depth */
+  text-shadow:
+    0 2px 14px rgba(255,255,255,0.14),
+    0 0 26px rgba(160,200,255,0.18);
+
+  transition: 
+    opacity .45s ease,
+    transform .45s ease,
+    filter .45s ease,
+    background-position 2.5s ease; /* shimmer flow */
+}
+
+
+#evolveLine.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  background-position: 100% 50%; /* gradient travels */
+}
+
+
+#evolveLine.pulse {
+  filter: brightness(1.12) saturate(1.15);
+}
+
+
+#evolveLine.ripple::after {
+  width: 200%;
+  opacity: .7;
+  filter: blur(35px);
+}
+@keyframes gradientFlux {
+  0% { background-position: 0% 50%; filter: brightness(.98); }
+  50% { background-position: 100% 50%; filter: brightness(1.26) contrast(1.1); }
+  100% { background-position: 0% 50%; filter: brightness(1.02); }
+}
+
+#evolveLine {
+  line-height: 1.25; /* or 1.3 */
+  padding-bottom: 6px; /* gives descenders room */
+}
+
 
     /* Navbar */
     .nav-item {
-      color: #374151;
-      font-weight: 500;
+      color: #878a8d;
+      font-weight: 800;
       transition: all 0.3s ease;
     }
     .nav-item:hover { color: #0ea5e9; }
@@ -183,103 +384,92 @@
       transform: scale(1.1);
       filter: drop-shadow(0 0 6px rgba(59,130,246,0.5));
     }
+    
 
 
   </style>
 </head>
 
 <body>
-  <!-- Navbar -->
-<!-- Responsive Navbar -->
-<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/90 border-b border-gray-200 shadow-sm">
-  <div class="container mx-auto flex items-center justify-between px-6 py-4">
-    <!-- Logo -->
-    <div class="flex items-center space-x-3">
-      <a href="/">
-        <img src="logo.png" alt="Hyquantix Logo" class="w-32 md:w-40 h-auto object-contain">
-      </a>
-      <p class="hidden sm:block text-sm text-gray-500">Intelligent · Reliable · Secure</p>
-    </div>
 
-    <!-- Desktop Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md shadow-sm">
+  <div class="container mx-auto flex items-center justify-between px-6 py-4">
+    <div class="flex flex-col items-start space-y-1">
+  <a href="/">
+    <img src="logo1.png" class="w-32 md:w-40">
+  </a>
+  <p class="hidden sm:block text-xs md:text-sm text-cyan-400 tracking-wide">
+    Intelligent · Reliable · Secure
+  </p>
+</div>
+
     <nav class="hidden md:flex space-x-8 font-medium">
-      <a href="/"class="nav-item" >Home</a>
+      <a href="/" class="nav-item text-cyan-400 font-semibold">Home</a>
       <a href="/about/" class="nav-item">About</a>
       <a href="/services/" class="nav-item">Services</a>
       <a href="/career/" class="nav-item">Careers</a>
       <a href="/contact/" class="nav-item">Contact</a>
     </nav>
-
-    <!-- Impact Button (Desktop only) -->
-    <a href="/impact/" class="hidden md:inline-block px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-md hover:shadow-lg transition">
-      Our Impact
-    </a>
-
-    <!-- Hamburger (Mobile) -->
-    <button id="menu-toggle" class="md:hidden text-gray-800 text-3xl focus:outline-none">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+    <a href="/impact/" class="hidden md:inline-block btn-primary">Our Impact</a>
+    <button id="menu-toggle" class="md:hidden text-3xl"><i class="fa-solid fa-bars"></i></button>
   </div>
 </header>
 
-<!-- Sidebar Menu (Mobile) -->
-<div id="mobile-menu-overlay"
-     class="fixed inset-0 bg-black/40 hidden z-40 transition-opacity duration-300 ease-in-out"></div>
-
-<div id="mobile-menu"
-     class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 flex flex-col p-8 space-y-6">
-  <button id="close-menu" class="self-end text-3xl text-gray-600 hover:text-cyan-600">
-    <i class="fa-solid fa-xmark"></i>
-  </button>
-
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 hidden z-40"></div>
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 shadow-2xl translate-x-full z-50 flex flex-col p-8 space-y-6">
+  <button id="close-menu" class="self-end text-3xl text-gray-300"><i class="fa-solid fa-xmark"></i></button>
   <nav class="flex flex-col space-y-5 text-lg font-medium">
-    <a href="/" class="nav-item text-cyan-600 font-semibold">Home</a>
+    <a href="/" class="nav-item text-cyan-400 font-semibold">Home</a>
     <a href="/about/" class="nav-item">About</a>
     <a href="/services/" class="nav-item">Services</a>
     <a href="/career/" class="nav-item">Careers</a>
     <a href="/contact/" class="nav-item">Contact</a>
-    <a href="/impact/" class="btn-primary w-full text-center py-3 rounded-full">Our Impact</a>
+    <a href="/impact/" class="btn-primary w-full text-center py-3">Our Impact</a>
   </nav>
 </div>
 
+  <section id="home" class="relative h-screen w-full overflow-hidden text-white flex flex-col items-center justify-center
+">
+    <!-- 3D Neural Canvas -->
+   <!-- Background Starfield -->
+<canvas id="starfield" class="absolute inset-0 w-full h-full z-0"></canvas>
 
-  <!-- HERO -->
-  <section id="home" 
-  class="relative text-gray-900 overflow-hidden bg-cover bg-center bg-no-repeat" 
-  style="background-image: url('img1.jpg');">
-  
-  <!-- Gradient Overlay -->
-  <div class="absolute inset-0 bg-gradient-to-br from-white/90 via-gray-50/80 to-gray-100/70"></div>
+<!-- Neural AI Canvas -->
+<canvas id="aiCanvas" class="absolute inset-0 w-full h-full z-10"></canvas>
 
-  <div class="relative container mx-auto px-6 py-40 flex flex-col md:flex-row items-center justify-between gap-16">
-    <div class="max-w-xl z-10">
-      <p class="uppercase tracking-widest text-sm text-gray-600 mb-3">Digital Innovation Partner</p>
-      <h1 class="text-6xl font-extrabold leading-tight mb-6">
-        <span class="animated-gradient-text">Empowering Your Digital Transformation</span>
-      </h1>
-      <p class="text-gray-700 text-lg leading-relaxed mb-8">
-        <strong>Hyquantix</strong> unlocks your business’s full potential with innovative IT solutions. 
-        We streamline processes, automate tasks, and provide expert support — empowering you to achieve unprecedented growth.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <a href="#expertise" class="btn-primary">Explore Services</a>
-        <a href="/about/" class="px-6 py-3 border border-gray-300 font-semibold rounded-full hover:bg-gray-100 hover:text-gray-900 transition">Learn More</a>
-      </div>
-    </div>
 
-    <div class="relative flex justify-center items-center z-10">
-      <div class="relative w-[420px] h-[420px]">
-        <lottie-player 
-          src="https://assets9.lottiefiles.com/packages/lf20_pprxh53t.json" 
-          background="transparent" speed="1" loop autoplay>
-        </lottie-player>
-      </div>
+    <!-- Cinematic vignette -->
+    <div class="pointer-events-none absolute inset-0"
+         style="background: radial-gradient(ellipse at center, rgba(189, 159, 159, 0) 28%, rgba(12, 12, 12, 0.55) 80%);"></div>
+
+
+
+<div class="relative z-10 h-full flex flex-col items-center justify-center px-6">
+  <div class="text-center max-w-4xl fade-in">
+
+    <!-- Cinematic AI Evolution Text -->
+    <p id="evolveLine"
+   class="text-3xl sm:text-4xl md:text-5xl font-semibold evo-text opacity-0 scale-90 mb-6 tracking-tight"></p>
+<p class="text-xs tracking-[0.2em] text-[#9fb7dd]/70 mb-4 uppercase">
+  Future-Driven Intelligence
+</p>
+
+
+    <!-- Subline -->
+    <p class="text-gray-300/90 text-base md:text-xl leading-relaxed max-w-3xl mx-auto mb-10">
+      Hyquantix unlocks your business’s full potential with innovative IT solutions. We streamline processes, automate tasks, and provide expert support — empowering you to achieve unprecedented growth.
+    </p>
+
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="#expertise" class="btn-primary">Explore Intelligence</a>
+      <a href="/about/" class="btn-ghost">Who We Are</a>
     </div>
   </div>
-</section>
-  <!-- OUR CORE EXPERTISE -->
+</div>
+
+  </section>
   <!-- Expertise section -->
-<section id="expertise" class="relative overflow-hidden py-24 bg-white text-gray-700"
+<section id="expertise" class="relative overflow-hidden py-24 bg-white text-gray-700 "
          style="background-image: url('grid.svg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
          <div class="absolute inset-0 bg-white/80"></div>
 
@@ -347,12 +537,13 @@
     </div>
   </section>
 
-  <!-- COMPREHENSIVE IT SOLUTIONS -->
+
  <section 
   class="relative py-24 bg-gradient-to-b from-gray-50 via-white to-gray-100 text-center overflow-hidden"
   style="background-image: url('radarr-bg.svg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
   
-  <div class="absolute inset-0 bg-white/60"></div> <!-- light overlay for readability -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#e7f5ff] via-[#f4faff] to-white/90"></div>
+
 
   <div class="relative container mx-auto px-6">
     <div class="inline-block mb-6 px-5 py-1 rounded-full bg-cyan-50 text-sm text-cyan-600 border border-cyan-200">
@@ -368,7 +559,7 @@
     </p>
 
     <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-      <div class="flex flex-col items-center text-center bg-white p-8 rounded-2xl border border-gray-200 hover:border-cyan-400 transition shadow-sm hover:shadow-lg">
+      <div class="flex flex-col items-center text-center bg-white p-8 rounded-2xl border border-gray-200 hover:border-cyan-400 transition shadow-sm hover:shadow-lg"data-aos="zoom-in" data-aos-delay="100">
         <div class="mb-5" data-lucide="cpu" style="width:50px;height:50px;color:#06b6d4;"></div>
         <h4 class="text-xl font-semibold mb-2 text-gray-900">Improved Efficiency</h4>
         <p class="text-gray-600">
@@ -376,7 +567,7 @@
         </p>
       </div>
 
-      <div class="flex flex-col items-center text-center bg-white p-8 rounded-2xl border border-gray-200 hover:border-cyan-400 transition shadow-sm hover:shadow-lg">
+      <div class="flex flex-col items-center text-center bg-white p-8 rounded-2xl border border-gray-200 hover:border-cyan-400 transition shadow-sm hover:shadow-lg"data-aos="zoom-in" data-aos-delay="100">
         <div class="mb-5" data-lucide="shield-check" style="width:50px;height:50px;color:#06b6d4;"></div>
         <h4 class="text-xl font-semibold mb-2 text-gray-900">Data Security</h4>
         <p class="text-gray-600">
@@ -386,6 +577,64 @@
     </div>
   </div>
 </section>
+<!-- TRUST / CLIENT LOGOS -->
+
+
+<!-- WHY CHOOSE HYQUANTIX -->
+<section class="relative py-20 bg-gradient-to-b from-white via-[#f7fbff] to-[#eef6ff]">
+  <div class="container mx-auto px-6 text-center">
+
+    <!-- Title -->
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900 tracking-tight">
+      Why Choose Hyquantix?
+    </h2>
+
+    <!-- Subtitle -->
+    <p class="text-gray-600 max-w-2xl mx-auto mb-14 leading-relaxed">
+      We combine intelligent automation, secure architectures, and deep business understanding 
+      to build future-ready AI solutions.
+    </p>
+
+    <!-- Feature Grid -->
+    <div class="grid md:grid-cols-4 gap-8">
+
+      <!-- Card -->
+      <div class="group bg-white/70 backdrop-blur-md p-8 rounded-2xl border border-gray-200 
+      hover:border-cyan-400/60 shadow-sm hover:shadow-[0_8px_28px_rgba(56,189,248,0.20)]
+      transition-all duration-300 hover:-translate-y-1" data-aos="zoom-in" data-aos-delay="100">
+        <i class="fa-solid fa-brain text-3xl text-cyan-500 mb-4 transition group-hover:scale-110"></i>
+        <h4 class="font-semibold text-lg text-gray-900 mb-2">AI-Driven</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">Modern solutions powered by AI & automation.</p>
+      </div>
+
+      <div class="group bg-white/70 backdrop-blur-md p-8 rounded-2xl border border-gray-200 
+      hover:border-cyan-400/60 shadow-sm hover:shadow-[0_8px_28px_rgba(56,189,248,0.20)]
+      transition-all duration-300 hover:-translate-y-1"data-aos="zoom-in" data-aos-delay="100">
+        <i class="fa-solid fa-shield-halved text-3xl text-cyan-500 mb-4 transition group-hover:scale-110"></i>
+        <h4 class="font-semibold text-lg text-gray-900 mb-2">Secure by Design</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">Enterprise-grade data protection & governance.</p>
+      </div>
+
+      <div class="group bg-white/70 backdrop-blur-md p-8 rounded-2xl border border-gray-200 
+      hover:border-cyan-400/60 shadow-sm hover:shadow-[0_8px_28px_rgba(56,189,248,0.20)]
+      transition-all duration-300 hover:-translate-y-1 " data-aos="zoom-in" data-aos-delay="100">
+        <i class="fa-solid fa-rocket text-3xl text-cyan-500 mb-4 transition group-hover:scale-110"></i>
+        <h4 class="font-semibold text-lg text-gray-900 mb-2">Fast Execution</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">Agile delivery for faster business impact.</p>
+      </div>
+
+      <div class="group bg-white/70 backdrop-blur-md p-8 rounded-2xl border border-gray-200 
+      hover:border-cyan-400/60 shadow-sm hover:shadow-[0_8px_28px_rgba(56,189,248,0.20)]
+      transition-all duration-300 hover:-translate-y-1"data-aos="zoom-in" data-aos-delay="100">
+        <i class="fa-solid fa-people-group text-3xl text-cyan-500 mb-4 transition group-hover:scale-110"></i>
+        <h4 class="font-semibold text-lg text-gray-900 mb-2">Dedicated Support</h4>
+        <p class="text-gray-600 text-sm leading-relaxed">We partner with you, not just deliver.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 
   <!-- CTA -->
@@ -394,6 +643,7 @@
     <p class="text-gray-600 mb-8">Partner with Hyquantix Technologies to accelerate your digital transformation journey.</p>
     <a href="/contact/" class="inline-block px-8 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-semibold rounded-full shadow-md transition">Contact Us</a>
   </section>
+  
 
   <!-- Footer -->
   <footer class="bg-gray-50 border-t border-gray-200 py-12 text-gray-500 text-sm">
@@ -438,7 +688,6 @@
     </div>
   </footer>
 
-  <!-- Chatbot -->
   <!-- Chatbot UI -->
 <div class="chatbot-container" id="chatbot" style="display:none;">
   <div class="chatbot-header flex justify-between items-center p-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
@@ -703,30 +952,376 @@
   });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const current = window.location.pathname;
-  document.querySelectorAll('.nav-item').forEach(link => {
-    const href = link.getAttribute('href');
+const starCanvas = document.getElementById("starfield");
+const ctx = starCanvas.getContext("2d");
 
-    // For Home: highlight only if you're on root "/"
-    if (href === "/" && (current === "/" || current === "/index.html")) {
-      link.classList.add('text-cyan-600', 'font-semibold');
-    }
-    // For other pages: highlight if path starts with that href
-    else if (href !== "/" && current.startsWith(href)) {
-      link.classList.add('text-cyan-600', 'font-semibold');
-    } 
-    else {
-      link.classList.remove('text-cyan-600', 'font-semibold');
-    }
-  });
-});
+let stars = [];
+let w, h;
+
+function resizeSpace() {
+  w = starCanvas.width = window.innerWidth;
+  h = starCanvas.height = window.innerHeight;
+  stars = Array.from({ length: 800 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    z: Math.random() * 0.8 + 0.2,
+    r: Math.random() * 1.2 + 0.2
+  }));
+}
+resizeSpace();
+window.addEventListener("resize", resizeSpace);
+
+function drawSpace() {
+  ctx.clearRect(0, 0, w, h);
+  for (const s of stars) {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(160,220,255,${s.z})`;
+    ctx.fill();
+    s.y += s.z * 0.3; // drift down for cosmic feel
+    if (s.y > h) s.y = 0; // wrap to top
+  }
+  requestAnimationFrame(drawSpace);
+}
+drawSpace();
 </script>
 
+  <!-- Typed.js (typewriter words) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+const evolveLines = [
+  "AI isn't emerging",
+  "It's accelerating",
+  "Systems aren't improving",
+  "They're self-optimizing",
+  "Intelligence isn't built",
+  "It's learned",
+  "The future isn't coming",
+  "It's already here",
+  "Hyquantix — Where Intelligence Learns to Think"
+];
+
+let idx = 0;
+const el = document.getElementById("evolveLine");
+
+function cycleText() {
+  el.classList.remove("show", "pulse", "ripple");
+
+  setTimeout(() => {
+    el.textContent = evolveLines[idx];
+    
+    el.classList.add("show");
+
+    setTimeout(() => {
+      el.classList.add("pulse");
+      el.classList.add("ripple");
+    }, 120);
+
+    idx = (idx + 1) % evolveLines.length;
+  }, 230);
+}
+
+cycleText();
+setInterval(cycleText, 3200);
+
+</script>
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <script>
+    (function initAIHero(){
+   
+      try {
+        const test = document.createElement('canvas').getContext('webgl') || document.createElement('canvas').getContext('experimental-webgl');
+        if (!test) throw new Error('No WebGL');
+      } catch(e) {
+        document.getElementById('home').style.display = 'none';
+        document.getElementById('fallback').style.display = 'flex';
+        return;
+      }
+
+      const canvas = document.getElementById("aiCanvas");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(65, window.innerWidth/window.innerHeight, 0.1, 300);
+      camera.position.set(0, 0, 12);
 
 
+      const fogColor = new THREE.Color(0x05060f);
+      scene.fog = new THREE.FogExp2(fogColor, 0.07);
+
+
+      const coreGeo = new THREE.SphereGeometry(1.3, 128, 128);
+      const coreMat = new THREE.MeshStandardMaterial({
+        color: 0x0b1e2a,
+        metalness: 1,
+        roughness: 0.2,
+        envMapIntensity: 1.0
+      });
+      const core = new THREE.Mesh(coreGeo, coreMat);
+      scene.add(core);
+
+
+      const veins = new THREE.Mesh(
+        new THREE.SphereGeometry(1.305, 64, 64),
+        new THREE.MeshPhongMaterial({
+          color: 0x00eaff, emissive: 0x00aaff, emissiveIntensity: 0.35,
+          transparent:true, opacity:.18, shininess: 120, blending: THREE.AdditiveBlending
+        })
+      );
+      scene.add(veins);
+
+
+      const aura = new THREE.Mesh(
+        new THREE.SphereGeometry(1.8, 64, 64),
+        new THREE.MeshBasicMaterial({ color: 0x00fff2, transparent:true, opacity:.22, blending: THREE.AdditiveBlending })
+      );
+      scene.add(aura);
+
+
+      scene.add(new THREE.AmbientLight(0x88ffff, 0.7));
+      const dir = new THREE.DirectionalLight(0x00faff, 1.3);
+      dir.position.set(2, 3, 4);
+      scene.add(dir);
+      const rim = new THREE.PointLight(0xff4ad8, 0.7, 40);
+      rim.position.set(-4, -2, 3);
+      scene.add(rim);
+
+      /* --- STARFIELD DEPTH --- */
+      const starGeo = new THREE.BufferGeometry();
+      const starCount = 1000;
+      const starPos = new Float32Array(starCount * 3);
+      for (let i=0;i<starCount;i++){
+        starPos[i*3]   = (Math.random()-0.5) * 200;
+        starPos[i*3+1] = (Math.random()-0.5) * 200;
+        starPos[i*3+2] = -50 - Math.random() * 140;
+      }
+      starGeo.setAttribute("position", new THREE.BufferAttribute(starPos, 3));
+      const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ size: 0.6, color: 0x5fb8ff, transparent:true, opacity:0.5 }));
+      scene.add(stars);
+
+
+      const NODE_COUNT = 360;
+      const pos = new Float32Array(NODE_COUNT * 3);
+      const vel = new Float32Array(NODE_COUNT * 3);
+      for (let i=0;i<NODE_COUNT;i++){
+        pos[i*3] = (Math.random()-0.5)*10;
+        pos[i*3+1] = (Math.random()-0.5)*10;
+        pos[i*3+2] = (Math.random()-0.5)*10;
+        vel[i*3] = (Math.random()-0.5)*0.01;
+        vel[i*3+1] = (Math.random()-0.5)*0.01;
+        vel[i*3+2] = (Math.random()-0.5)*0.01;
+      }
+      const pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+      const pMat = new THREE.PointsMaterial({ size: 0.055, color: 0x00ffe7, transparent: true, opacity: 1 });
+      const points = new THREE.Points(pGeo, pMat);
+      scene.add(points);
+
+      /* --- SYNAPSE LINES --- */
+      const MAX_CONN = NODE_COUNT * 3;
+      const lPos = new Float32Array(MAX_CONN * 6);
+      const lCol = new Float32Array(MAX_CONN * 6);
+      const lGeo = new THREE.BufferGeometry();
+      lGeo.setAttribute("position", new THREE.BufferAttribute(lPos, 3));
+      lGeo.setAttribute("color", new THREE.BufferAttribute(lCol, 3));
+      const lMat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.82, blending: THREE.AdditiveBlending });
+      const lines = new THREE.LineSegments(lGeo, lMat);
+      scene.add(lines);
+
+
+      const HELIX_TURNS = 6, HELIX_RADIUS = 2.3, HELIX_PITCH = 0.75, HELIX_POINTS = 900, RUNG_EVERY = 28, PULSE_COUNT = 90;
+      function helixPoint(t, phase = 0){
+        const totalHeight = HELIX_TURNS * HELIX_PITCH;
+        const angle = t * HELIX_TURNS * Math.PI * 2 + phase;
+        return new THREE.Vector3(
+          HELIX_RADIUS * Math.cos(angle),
+          (t - 0.5) * totalHeight,
+          HELIX_RADIUS * Math.sin(angle)
+        );
+      }
+      const helixGroup = new THREE.Group(); scene.add(helixGroup);
+      function buildStrand(phase, c1 = 0x00ffe7, c2 = 0xff4ad8){
+        const pts = []; for (let i=0;i<=HELIX_POINTS;i++){ pts.push(helixPoint(i/HELIX_POINTS, phase)); }
+        const geo = new THREE.BufferGeometry().setFromPoints(pts);
+        const colors = new Float32Array((HELIX_POINTS + 1) * 3);
+        for (let i=0;i<=HELIX_POINTS;i++){
+          const k = i/HELIX_POINTS;
+          const col = new THREE.Color().lerpColors(new THREE.Color(c1), new THREE.Color(c2), (0.5 + 0.5 * Math.sin(k * Math.PI * 2)));
+          colors[i*3]=col.r; colors[i*3+1]=col.g; colors[i*3+2]=col.b;
+        }
+        geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        const mat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending });
+        return new THREE.Line(geo, mat);
+      }
+      const strandA = buildStrand(0);
+      const strandB = buildStrand(Math.PI);
+      helixGroup.add(strandA, strandB);
+
+      const rungGeo = new THREE.BufferGeometry();
+      const rungPos = [], rungCol = [];
+      const cA = new THREE.Color(0x00ffe7), cB = new THREE.Color(0xff4ad8);
+      for (let i = 0; i <= HELIX_POINTS; i += RUNG_EVERY){
+        const t = i / HELIX_POINTS, a = helixPoint(t, 0), b = helixPoint(t, Math.PI);
+        rungPos.push(a.x,a.y,a.z,b.x,b.y,b.z);
+        const mix = (Math.sin(i * 0.1) + 1) * 0.5;
+        const c1 = cA.clone().lerp(cB, mix), c2 = cB.clone().lerp(cA, mix);
+        rungCol.push(c1.r,c1.g,c1.b,c2.r,c2.g,c2.b);
+      }
+      rungGeo.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(rungPos), 3));
+      rungGeo.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(rungCol), 3));
+      const rungs = new THREE.LineSegments(rungGeo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .75, blending: THREE.AdditiveBlending }));
+      helixGroup.add(rungs);
+
+      const pulseGeo = new THREE.BufferGeometry();
+      const pulsePositions = new Float32Array(PULSE_COUNT * 3);
+      const pulseOffsets = new Float32Array(PULSE_COUNT);
+      const pulseSide = new Float32Array(PULSE_COUNT); // 0 A, 1 B
+      for (let i=0;i<PULSE_COUNT;i++){ pulseOffsets[i]=Math.random(); pulseSide[i]=Math.random()<.5?0:1; }
+      pulseGeo.setAttribute('position', new THREE.BufferAttribute(pulsePositions, 3));
+      const pulses = new THREE.Points(pulseGeo, new THREE.PointsMaterial({ size: .08, transparent:true, opacity:1, depthWrite:false, blending:THREE.AdditiveBlending, color: 0xffffff }));
+      helixGroup.add(pulses);
+
+
+     
+      let shockwave = { radius: 0, active: false };
+      window.addEventListener("click", () => { shockwave.radius = 0; shockwave.active = true; });
+
+
+      const mouse = new THREE.Vector2(0, 0);
+      window.addEventListener("mousemove", e => {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      /* --- ANIMATE --- */
+      let frame = 0;
+      function animate(){
+        requestAnimationFrame(animate);
+        frame++;
+
+        // Core breathing & glow
+        const scale = 1 + Math.sin(frame * 0.02) * 0.06;
+        core.scale.setScalar(scale);
+        veins.rotation.y += 0.002;
+        aura.scale.setScalar(1.3 + Math.sin(frame * 0.02) * 0.1);
+
+        // Camera parallax
+        camera.position.x = mouse.x * 0.5;
+        camera.position.y = mouse.y * 0.35;
+        camera.lookAt(0,0,0);
+
+        // Nodes motion
+        const p = pGeo.attributes.position.array;
+        for (let i=0;i<NODE_COUNT;i++){
+          const ix = i*3;
+          const x = p[ix], y = p[ix+1], z = p[ix+2];
+
+          vel[ix]   += (-x * 0.0006) + (mouse.x * 0.0004);
+          vel[ix+1] += (-y * 0.0006) + (mouse.y * 0.0003);
+          vel[ix+2] += (-z * 0.0006);
+
+          // shockwave push
+          if (shockwave.active){
+            const d = Math.sqrt(x*x + y*y + z*z);
+            if (Math.abs(d - shockwave.radius) < 0.4){
+              vel[ix]   += x * 0.02;
+              vel[ix+1] += y * 0.02;
+              vel[ix+2] += z * 0.02;
+            }
+          }
+
+          // integrate + damping
+          p[ix]   += vel[ix];   vel[ix]   *= 0.998;
+          p[ix+1] += vel[ix+1]; vel[ix+1] *= 0.998;
+          p[ix+2] += vel[ix+2]; vel[ix+2] *= 0.998;
+        }
+        pGeo.attributes.position.needsUpdate = true;
+
+        // Connect close neighbors
+        const maxDist = 1.35;
+        let ptr = 0;
+        for (let i=0;i<NODE_COUNT;i++){
+          const ax = p[i*3], ay = p[i*3+1], az = p[i*3+2];
+          for (let j=i+1, hops=0; j<NODE_COUNT && hops<8; j+= Math.floor(1 + Math.random()*3), hops++){
+            const bx = p[j*3], by = p[j*3+1], bz = p[j*3+2];
+            const dx = ax-bx, dy = ay-by, dz = az-bz;
+            const d2 = dx*dx + dy*dy + dz*dz;
+            if (d2 < maxDist*maxDist && ptr < MAX_CONN*6){
+              lPos[ptr] = ax; lPos[ptr+1]=ay; lPos[ptr+2]=az;
+              lPos[ptr+3]= bx; lPos[ptr+4]=by; lPos[ptr+5]=bz;
+
+              const t = Math.max(0.05, 1.0 - Math.sqrt(d2)/maxDist);
+              const pulse = 0.6 + 0.4*Math.sin((frame*0.05) + i*0.15);
+              const c1 = new THREE.Color().setHSL(0.52 + 0.08*Math.sin(i*0.13), 1.0, 0.6);
+              const c2 = new THREE.Color().setHSL(0.78 + 0.08*Math.cos(j*0.17), 1.0, 0.6);
+              const r1 = c1.r * t * pulse, g1 = c1.g * t * pulse, b1 = c1.b * t * pulse;
+              const r2 = c2.r * t * pulse, g2 = c2.g * t * pulse, b2 = c2.b * t * pulse;
+
+              lCol[ptr]=r1; lCol[ptr+1]=g1; lCol[ptr+2]=b1;
+              lCol[ptr+3]=r2; lCol[ptr+4]=g2; lCol[ptr+5]=b2;
+              ptr += 6;
+            }
+          }
+        }
+        lGeo.setDrawRange(0, ptr/3);
+        lGeo.attributes.position.needsUpdate = true;
+        lGeo.attributes.color.needsUpdate = true;
+
+        // Helix motion & pulses
+        helixGroup.rotation.y += 0.003;
+        helixGroup.rotation.x = Math.sin(frame * 0.004) * 0.08;
+ 
+        const breathe = 1 + Math.sin(frame * 0.02) * 0.02;
+        strandA.scale.setScalar(breathe);
+        strandB.scale.setScalar(breathe);
+
+        const speed = 0.18;
+        const pp = pulseGeo.attributes.position.array;
+        for (let i=0;i<PULSE_COUNT;i++){
+          const t = (pulseOffsets[i] + frame * speed / 600) % 1;
+          const phase = pulseSide[i] === 0 ? 0 : Math.PI;
+          const v = helixPoint(t, phase);
+          pp[i*3] = v.x; pp[i*3+1] = v.y; pp[i*3+2] = v.z;
+        }
+        pulseGeo.attributes.position.needsUpdate = true;
+
+        // Shockwave animate
+        if (shockwave.active){
+          shockwave.radius += 0.2;
+          if (shockwave.radius > 12) shockwave.active = false;
+        }
+
+        // Stars drift
+        stars.rotation.z += 0.0004;
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Resize
+      window.addEventListener("resize", () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      });
+    })();
+  </script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+  duration: 900,
+  easing: "ease-out-cubic",
+  once: true,       // animation runs only once
+  offset: 120       // triggers earlier
+});
+</script>
 </body>
 </html>
+
+
 
 
 
